@@ -1,0 +1,140 @@
+[{
+  "name": "ViewSeasonRequestBody",
+  "message": {
+    "fields": [{
+      "name": "seasonId",
+      "type": "string"
+    }, {
+      "name": "episodeId",
+      "type": "string"
+    }]
+  }
+}, {
+  "name": "ViewSeasonResponse",
+  "message": {
+    "fields": []
+  }
+}, {
+  "name": "ViewSeason",
+  "service": {
+    "path": "/ViewSeason",
+    "body": "ViewSeasonRequestBody",
+    "auth": {
+      "key": "auth",
+      "type": "ClientSession",
+      "import": "@phading/user_session_service_interface/client_session"
+    },
+    "response": "ViewSeasonResponse",
+    "outputWebClient": "./client_requests",
+    "outputHandler": "./server_handlers"
+  }
+}, {
+  "name": "GetViewedSeasonsRequestBody",
+  "message": {
+    "fields": [{
+      "name": "lastTimeCursor",
+      "type": "number"
+    }]
+  }
+}, {
+  "name": "GetViewedSeasonsResponse",
+  "message": {
+    "fields": [{
+      "name": "seasons",
+      "type": "SeasonViewed",
+      "import": "./season_viewed",
+      "isArray": true
+    }]
+  }
+}, {
+  "name": "GetViewedSeasons",
+  "service": {
+    "path": "/GetViewedSeasons",
+    "body": "GetViewedSeasonsRequestBody",
+    "auth": {
+      "key": "auth",
+      "type": "ClientSession",
+      "import": "@phading/user_session_service_interface/client_session"
+    },
+    "response": "GetViewedSeasonsResponse",
+    "outputWebClient": "./client_requests",
+    "outputHandler": "./server_handlers"
+  }
+}, {
+  "name": "ViewPublisherRequestBody",
+  "message": {
+    "fields": [{
+      "name": "accountId",
+      "type": "string"
+    }]
+  }
+}, {
+  "name": "ViewPublisherResponse",
+  "message": {
+    "fields": []
+  }
+}, {
+  "name": "ViewPublisher",
+  "service": {
+    "path": "/ViewPublisher",
+    "body": "ViewPublisherRequestBody",
+    "auth": {
+      "key": "auth",
+      "type": "ClientSession",
+      "import": "@phading/user_session_service_interface/client_session"
+    },
+    "response": "ViewPublisherResponse",
+    "outputWebClient": "./client_requests",
+    "outputHandler": "./server_handlers"
+  }
+}, {
+  "name": "GetViewedPublishersRequestBody",
+  "message": {
+    "fields": [{
+      "name": "lastTimeCursor",
+      "type": "number"
+    }]
+  }
+}, {
+  "name": "GetViewedPublishersResponse",
+  "message": {
+    "fields": [{
+      "name": "publishers",
+      "type": "PublisherViewed",
+      "import": "./publisher_viewed",
+      "isArray": true
+    }]
+  }
+}, {
+  "name": "GetViewedPublishers",
+  "service": {
+    "path": "/GetViewedPublishers",
+    "body": "GetViewedPublishersRequestBody",
+    "auth": {
+      "key": "auth",
+      "type": "ClientSession",
+      "import": "@phading/user_session_service_interface/client_session"
+    },
+    "response": "GetViewedPublishersResponse",
+    "outputWebClient": "./client_requests",
+    "outputHandler": "./server_handlers"
+  }
+}, {
+  "name": "GetPostedCommentsRequestBody",
+  "message": {
+    "fields": [{
+      "name": "lastTimeCursor",
+      "type": "number"
+    }]
+  }
+}, {
+  "name": "GetPostedCommentsResponse",
+  "message": {
+    "fields": [{
+      "name": "comments",
+      "type": "CommentPosted",
+      "import": "./comment_posted",
+      "isArray": true
+    }]
+  }
+}]

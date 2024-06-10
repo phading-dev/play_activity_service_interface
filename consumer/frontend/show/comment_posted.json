@@ -1,0 +1,28 @@
+[{
+  "name": "CommentPosted",
+  "message": {
+    "fields": [{
+      "name": "commentId",
+      "type": "string"
+    }, {
+      "name": "seasonId",
+      "type": "string"
+    }, {
+      "name": "seasonName",
+      "type": "string"
+    }, {
+      "name": "episodeId",
+      "type": "string"
+    }, {
+      "name": "episodeName",
+      "type": "string"
+    }, {
+      "name": "content",
+      "type": "string"
+    }, {
+      "name": "postedTime",
+      "type": "string",
+      "comment": "TImestamp in seconds."
+    }]
+  }
+}]

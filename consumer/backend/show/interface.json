@@ -1,0 +1,23 @@
+[{
+  "name": "RecordPostedCommentRequestBody",
+  "message": {
+    "fields": [{
+      "name": "commentId",
+      "type": "string"
+    }]
+  }
+}, {
+  "name": "RecordPostedCommentResponse",
+  "message": {
+    "fields": []
+  }
+}, {
+  "name": "RecordPostedComment",
+  "service": {
+    "path": "/RecordPostedComment",
+    "body": "RecordPostedCommentRequestBody",
+    "response": "RecordPostedCommentResponse",
+    "outputWebClient": "./client_requests",
+    "outputHandler": "./server_handlers"
+  }
+}]

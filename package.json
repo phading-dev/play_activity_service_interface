@@ -1,0 +1,31 @@
+{
+  "name": "@phading/user_activity_service_interface",
+  "version": "0.1.0",
+  "description": "The interface of UserActivityService.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phading-dev/user_activity_service_interface.git"
+  },
+  "author": "Yuxuan Xie <teststaybaka@gmail.com> (http://www.yuxuanxie.com)",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/phading-dev/user_activity_service_interface/issues"
+  },
+  "homepage": "https://github.com/phading-dev/user_activity_service_interface#readme",
+  "files": [
+    "**/*.d.ts",
+    "**/*.js",
+    "**/*.json"
+  ],
+  "devDependencies": {
+    "@selfage/generator_cli": "^1.4.3",
+    "@selfage/tsconfig": "^1.0.7",
+    "@types/node": "^20.14.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@phading/user_session_service_interface": "^0.4.0",
+    "@selfage/message": "^3.1.7",
+    "@selfage/service_descriptor": "^3.6.1"
+  }
+}

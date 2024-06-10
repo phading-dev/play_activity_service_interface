@@ -1,0 +1,19 @@
+[{
+  "name": "PublisherViewed",
+  "message": {
+    "fields": [{
+      "name": "accountId",
+      "type": "string"
+    }, {
+      "name": "naturalName",
+      "type": "string"
+    }, {
+      "name": "avatarSmallPath",
+      "type": "string"
+    }, {
+      "name": "viewedTime",
+      "type": "number",
+      "comment": "Timestamp in seconds."
+    }]
+  }
+}]
