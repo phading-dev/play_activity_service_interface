@@ -1,5 +1,15 @@
 import { WebServiceClientInterface } from '@selfage/service_descriptor/web_service_client_interface';
-import { ViewSeasonRequestBody, ViewSeasonResponse, VIEW_SEASON, GetViewedSeasonsRequestBody, GetViewedSeasonsResponse, GET_VIEWED_SEASONS, ViewPublisherRequestBody, ViewPublisherResponse, VIEW_PUBLISHER, GetViewedPublishersRequestBody, GetViewedPublishersResponse, GET_VIEWED_PUBLISHERS } from './interface';
+import { SyncMeterReadingRequestBody, SyncMeterReadingResponse, SYNC_METER_READING, ViewSeasonRequestBody, ViewSeasonResponse, VIEW_SEASON, GetViewedSeasonsRequestBody, GetViewedSeasonsResponse, GET_VIEWED_SEASONS, ViewPublisherRequestBody, ViewPublisherResponse, VIEW_PUBLISHER, GetViewedPublishersRequestBody, GetViewedPublishersResponse, GET_VIEWED_PUBLISHERS } from './interface';
+
+export function syncMeterReading(
+  client: WebServiceClientInterface,
+  body: SyncMeterReadingRequestBody,
+): Promise<SyncMeterReadingResponse> {
+  return client.send({
+    descriptor: SYNC_METER_READING,
+    body,
+  });
+}
 
 export function viewSeason(
   client: WebServiceClientInterface,

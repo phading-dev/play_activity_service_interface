@@ -1,6 +1,15 @@
 import { ServiceHandlerInterface } from '@selfage/service_descriptor/service_handler_interface';
-import { VIEW_SEASON, ViewSeasonRequestBody, ViewSeasonResponse, GET_VIEWED_SEASONS, GetViewedSeasonsRequestBody, GetViewedSeasonsResponse, VIEW_PUBLISHER, ViewPublisherRequestBody, ViewPublisherResponse, GET_VIEWED_PUBLISHERS, GetViewedPublishersRequestBody, GetViewedPublishersResponse } from './interface';
+import { SYNC_METER_READING, SyncMeterReadingRequestBody, SyncMeterReadingResponse, VIEW_SEASON, ViewSeasonRequestBody, ViewSeasonResponse, GET_VIEWED_SEASONS, GetViewedSeasonsRequestBody, GetViewedSeasonsResponse, VIEW_PUBLISHER, ViewPublisherRequestBody, ViewPublisherResponse, GET_VIEWED_PUBLISHERS, GetViewedPublishersRequestBody, GetViewedPublishersResponse } from './interface';
 import { ClientSession } from '@phading/user_session_service_interface/client_session';
+
+export abstract class SyncMeterReadingHandlerInterface implements ServiceHandlerInterface {
+  public descriptor = SYNC_METER_READING;
+  public abstract handle(
+    loggingPrefix: string,
+    body: SyncMeterReadingRequestBody,
+    auth: ClientSession,
+  ): Promise<SyncMeterReadingResponse>;
+}
 
 export abstract class ViewSeasonHandlerInterface implements ServiceHandlerInterface {
   public descriptor = VIEW_SEASON;

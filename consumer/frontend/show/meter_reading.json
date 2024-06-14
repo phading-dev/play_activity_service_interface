@@ -1,0 +1,13 @@
+[{
+  "name": "MeterReading",
+  "message": {
+    "fields": [{
+      "name": "seasonId",
+      "type": "string"
+    }, {
+      "name": "watchTime",
+      "type": "number",
+      "comment": "Granularity is second."
+    }]
+  }
+}]

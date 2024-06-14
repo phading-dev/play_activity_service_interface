@@ -1,4 +1,33 @@
 [{
+  "name": "SyncMeterReadingRequestBody",
+  "message": {
+    "fields": [{
+      "name": "readings",
+      "type": "MeterReading",
+      "import": "./meter_reading",
+      "isArray": true
+    }]
+  }
+}, {
+  "name": "SyncMeterReadingResponse",
+  "message": {
+    "fields": []
+  }
+}, {
+  "name": "SyncMeterReading",
+  "service": {
+    "path": "/SyncMeterReading",
+    "body": "SyncMeterReadingRequestBody",
+    "auth": {
+      "key": "auth",
+      "type": "ClientSession",
+      "import": "@phading/user_session_service_interface/client_session"
+    },
+    "response": "SyncMeterReadingResponse",
+    "outputWebClient": "./client_requests",
+    "outputHandler": "./server_handlers"
+  }
+}, {
   "name": "ViewSeasonRequestBody",
   "message": {
     "fields": [{
