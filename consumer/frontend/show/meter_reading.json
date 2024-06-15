@@ -5,9 +5,25 @@
       "name": "seasonId",
       "type": "string"
     }, {
+      "name": "watchStart",
+      "type": "number",
+      "comment": "In second."
+    }, {
+      "name": "watchEnd",
+      "type": "number",
+      "comment": "In second."
+    }, {
       "name": "watchTime",
       "type": "number",
-      "comment": "Granularity is second."
+      "comment": "Seconds between reading start and end."
+    }, {
+      "name": "startTimestamp",
+      "type": "number",
+      "comment": "Timestamp in second."
+    }, {
+      "name": "endTimestamp",
+      "type": "number",
+      "comment": "Timestamp in second."
     }]
   }
 }]
