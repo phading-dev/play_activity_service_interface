@@ -1,228 +1,117 @@
 import { MessageDescriptor, PrimitiveType } from '@selfage/message/descriptor';
-import { MeterReading, METER_READING } from './meter_reading';
 import { ServiceDescriptor } from '@selfage/service_descriptor';
 import { CLIENT_SESSION } from '@phading/user_session_service_interface/client_session';
-import { SeasonViewed, SEASON_VIEWED } from './season_viewed';
-import { PublisherViewed, PUBLISHER_VIEWED } from './publisher_viewed';
+import { EpisodeViewed, EPISODE_VIEWED } from './episode_viewed';
 import { CommentPosted, COMMENT_POSTED } from './comment_posted';
 
-export interface SyncMeterReadingRequestBody {
-  readings?: Array<MeterReading>,
-}
-
-export let SYNC_METER_READING_REQUEST_BODY: MessageDescriptor<SyncMeterReadingRequestBody> = {
-  name: 'SyncMeterReadingRequestBody',
-  fields: [
-    {
-      name: 'readings',
-      messageType: METER_READING,
-      isArray: true,
-    },
-  ]
-};
-
-export interface SyncMeterReadingResponse {
-}
-
-export let SYNC_METER_READING_RESPONSE: MessageDescriptor<SyncMeterReadingResponse> = {
-  name: 'SyncMeterReadingResponse',
-  fields: [
-  ]
-};
-
-export let SYNC_METER_READING: ServiceDescriptor = {
-  name: "SyncMeterReading",
-  path: "/SyncMeterReading",
-  body: {
-    messageType: SYNC_METER_READING_REQUEST_BODY,
-  },
-  auth: {
-    key: "auth",
-    type: CLIENT_SESSION
-  },
-  response: {
-    messageType: SYNC_METER_READING_RESPONSE,
-  },
-}
-
-export interface ViewSeasonRequestBody {
-  seasonId?: string,
+export interface ViewEpisodeRequestBody {
+/* If empty, a new id will be created and returned. */
+  viewSessionId?: string,
   episodeId?: string,
+/* Timestamp in seconds of the video. */
+  episodeTimestamp?: number,
 }
 
-export let VIEW_SEASON_REQUEST_BODY: MessageDescriptor<ViewSeasonRequestBody> = {
-  name: 'ViewSeasonRequestBody',
+export let VIEW_EPISODE_REQUEST_BODY: MessageDescriptor<ViewEpisodeRequestBody> = {
+  name: 'ViewEpisodeRequestBody',
   fields: [
     {
-      name: 'seasonId',
+      name: 'viewSessionId',
       primitiveType: PrimitiveType.STRING,
     },
     {
       name: 'episodeId',
       primitiveType: PrimitiveType.STRING,
     },
-  ]
-};
-
-export interface ViewSeasonResponse {
-}
-
-export let VIEW_SEASON_RESPONSE: MessageDescriptor<ViewSeasonResponse> = {
-  name: 'ViewSeasonResponse',
-  fields: [
-  ]
-};
-
-export let VIEW_SEASON: ServiceDescriptor = {
-  name: "ViewSeason",
-  path: "/ViewSeason",
-  body: {
-    messageType: VIEW_SEASON_REQUEST_BODY,
-  },
-  auth: {
-    key: "auth",
-    type: CLIENT_SESSION
-  },
-  response: {
-    messageType: VIEW_SEASON_RESPONSE,
-  },
-}
-
-export interface GetViewedSeasonsRequestBody {
-  lastTimeCursor?: number,
-}
-
-export let GET_VIEWED_SEASONS_REQUEST_BODY: MessageDescriptor<GetViewedSeasonsRequestBody> = {
-  name: 'GetViewedSeasonsRequestBody',
-  fields: [
     {
-      name: 'lastTimeCursor',
+      name: 'episodeTimestamp',
       primitiveType: PrimitiveType.NUMBER,
     },
   ]
 };
 
-export interface GetViewedSeasonsResponse {
-  seasons?: Array<SeasonViewed>,
+export interface ViewEpisodeResponse {
+  viewSessionId?: string,
 }
 
-export let GET_VIEWED_SEASONS_RESPONSE: MessageDescriptor<GetViewedSeasonsResponse> = {
-  name: 'GetViewedSeasonsResponse',
+export let VIEW_EPISODE_RESPONSE: MessageDescriptor<ViewEpisodeResponse> = {
+  name: 'ViewEpisodeResponse',
   fields: [
     {
-      name: 'seasons',
-      messageType: SEASON_VIEWED,
-      isArray: true,
-    },
-  ]
-};
-
-export let GET_VIEWED_SEASONS: ServiceDescriptor = {
-  name: "GetViewedSeasons",
-  path: "/GetViewedSeasons",
-  body: {
-    messageType: GET_VIEWED_SEASONS_REQUEST_BODY,
-  },
-  auth: {
-    key: "auth",
-    type: CLIENT_SESSION
-  },
-  response: {
-    messageType: GET_VIEWED_SEASONS_RESPONSE,
-  },
-}
-
-export interface ViewPublisherRequestBody {
-  accountId?: string,
-}
-
-export let VIEW_PUBLISHER_REQUEST_BODY: MessageDescriptor<ViewPublisherRequestBody> = {
-  name: 'ViewPublisherRequestBody',
-  fields: [
-    {
-      name: 'accountId',
+      name: 'viewSessionId',
       primitiveType: PrimitiveType.STRING,
     },
   ]
 };
 
-export interface ViewPublisherResponse {
-}
-
-export let VIEW_PUBLISHER_RESPONSE: MessageDescriptor<ViewPublisherResponse> = {
-  name: 'ViewPublisherResponse',
-  fields: [
-  ]
-};
-
-export let VIEW_PUBLISHER: ServiceDescriptor = {
-  name: "ViewPublisher",
-  path: "/ViewPublisher",
+export let VIEW_EPISODE: ServiceDescriptor = {
+  name: "ViewEpisode",
+  path: "/ViewEpisode",
   body: {
-    messageType: VIEW_PUBLISHER_REQUEST_BODY,
+    messageType: VIEW_EPISODE_REQUEST_BODY,
   },
   auth: {
     key: "auth",
     type: CLIENT_SESSION
   },
   response: {
-    messageType: VIEW_PUBLISHER_RESPONSE,
+    messageType: VIEW_EPISODE_RESPONSE,
   },
 }
 
-export interface GetViewedPublishersRequestBody {
-  lastTimeCursor?: number,
+export interface GetViewedEpisodesRequestBody {
+  lastViewedTimeCursor?: number,
 }
 
-export let GET_VIEWED_PUBLISHERS_REQUEST_BODY: MessageDescriptor<GetViewedPublishersRequestBody> = {
-  name: 'GetViewedPublishersRequestBody',
+export let GET_VIEWED_EPISODES_REQUEST_BODY: MessageDescriptor<GetViewedEpisodesRequestBody> = {
+  name: 'GetViewedEpisodesRequestBody',
   fields: [
     {
-      name: 'lastTimeCursor',
+      name: 'lastViewedTimeCursor',
       primitiveType: PrimitiveType.NUMBER,
     },
   ]
 };
 
-export interface GetViewedPublishersResponse {
-  publishers?: Array<PublisherViewed>,
+export interface GetViewedEpisodesResponse {
+  episodes?: Array<EpisodeViewed>,
 }
 
-export let GET_VIEWED_PUBLISHERS_RESPONSE: MessageDescriptor<GetViewedPublishersResponse> = {
-  name: 'GetViewedPublishersResponse',
+export let GET_VIEWED_EPISODES_RESPONSE: MessageDescriptor<GetViewedEpisodesResponse> = {
+  name: 'GetViewedEpisodesResponse',
   fields: [
     {
-      name: 'publishers',
-      messageType: PUBLISHER_VIEWED,
+      name: 'episodes',
+      messageType: EPISODE_VIEWED,
       isArray: true,
     },
   ]
 };
 
-export let GET_VIEWED_PUBLISHERS: ServiceDescriptor = {
-  name: "GetViewedPublishers",
-  path: "/GetViewedPublishers",
+export let GET_VIEWED_EPISODES: ServiceDescriptor = {
+  name: "GetViewedEpisodes",
+  path: "/GetViewedEpisodes",
   body: {
-    messageType: GET_VIEWED_PUBLISHERS_REQUEST_BODY,
+    messageType: GET_VIEWED_EPISODES_REQUEST_BODY,
   },
   auth: {
     key: "auth",
     type: CLIENT_SESSION
   },
   response: {
-    messageType: GET_VIEWED_PUBLISHERS_RESPONSE,
+    messageType: GET_VIEWED_EPISODES_RESPONSE,
   },
 }
 
 export interface GetPostedCommentsRequestBody {
-  lastTimeCursor?: number,
+  lastPostedTimeCursor?: number,
 }
 
 export let GET_POSTED_COMMENTS_REQUEST_BODY: MessageDescriptor<GetPostedCommentsRequestBody> = {
   name: 'GetPostedCommentsRequestBody',
   fields: [
     {
-      name: 'lastTimeCursor',
+      name: 'lastPostedTimeCursor',
       primitiveType: PrimitiveType.NUMBER,
     },
   ]
@@ -242,3 +131,18 @@ export let GET_POSTED_COMMENTS_RESPONSE: MessageDescriptor<GetPostedCommentsResp
     },
   ]
 };
+
+export let GET_POSTED_COMMENTS: ServiceDescriptor = {
+  name: "GetPostedComments",
+  path: "/GetPostedComments",
+  body: {
+    messageType: GET_POSTED_COMMENTS_REQUEST_BODY,
+  },
+  auth: {
+    key: "auth",
+    type: CLIENT_SESSION
+  },
+  response: {
+    messageType: GET_POSTED_COMMENTS_RESPONSE,
+  },
+}

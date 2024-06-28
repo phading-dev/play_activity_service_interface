@@ -1,150 +1,70 @@
 [{
-  "name": "SyncMeterReadingRequestBody",
+  "name": "ViewEpisodeRequestBody",
   "message": {
     "fields": [{
-      "name": "readings",
-      "type": "MeterReading",
-      "import": "./meter_reading",
-      "isArray": true
-    }]
-  }
-}, {
-  "name": "SyncMeterReadingResponse",
-  "message": {
-    "fields": []
-  }
-}, {
-  "name": "SyncMeterReading",
-  "service": {
-    "path": "/SyncMeterReading",
-    "body": "SyncMeterReadingRequestBody",
-    "auth": {
-      "key": "auth",
-      "type": "ClientSession",
-      "import": "@phading/user_session_service_interface/client_session"
-    },
-    "response": "SyncMeterReadingResponse",
-    "outputWebClient": "./client_requests",
-    "outputHandler": "./server_handlers"
-  }
-}, {
-  "name": "ViewSeasonRequestBody",
-  "message": {
-    "fields": [{
-      "name": "seasonId",
-      "type": "string"
+      "name": "viewSessionId",
+      "type": "string",
+      "comment": "If empty, a new id will be created and returned."
     }, {
       "name": "episodeId",
       "type": "string"
+    }, {
+      "name": "episodeTimestamp",
+      "type": "number",
+      "comment": "Timestamp in seconds of the video."
     }]
   }
 }, {
-  "name": "ViewSeasonResponse",
-  "message": {
-    "fields": []
-  }
-}, {
-  "name": "ViewSeason",
-  "service": {
-    "path": "/ViewSeason",
-    "body": "ViewSeasonRequestBody",
-    "auth": {
-      "key": "auth",
-      "type": "ClientSession",
-      "import": "@phading/user_session_service_interface/client_session"
-    },
-    "response": "ViewSeasonResponse",
-    "outputWebClient": "./client_requests",
-    "outputHandler": "./server_handlers"
-  }
-}, {
-  "name": "GetViewedSeasonsRequestBody",
+  "name": "ViewEpisodeResponse",
   "message": {
     "fields": [{
-      "name": "lastTimeCursor",
-      "type": "number"
-    }]
-  }
-}, {
-  "name": "GetViewedSeasonsResponse",
-  "message": {
-    "fields": [{
-      "name": "seasons",
-      "type": "SeasonViewed",
-      "import": "./season_viewed",
-      "isArray": true
-    }]
-  }
-}, {
-  "name": "GetViewedSeasons",
-  "service": {
-    "path": "/GetViewedSeasons",
-    "body": "GetViewedSeasonsRequestBody",
-    "auth": {
-      "key": "auth",
-      "type": "ClientSession",
-      "import": "@phading/user_session_service_interface/client_session"
-    },
-    "response": "GetViewedSeasonsResponse",
-    "outputWebClient": "./client_requests",
-    "outputHandler": "./server_handlers"
-  }
-}, {
-  "name": "ViewPublisherRequestBody",
-  "message": {
-    "fields": [{
-      "name": "accountId",
+      "name": "viewSessionId",
       "type": "string"
     }]
   }
 }, {
-  "name": "ViewPublisherResponse",
-  "message": {
-    "fields": []
-  }
-}, {
-  "name": "ViewPublisher",
+  "name": "ViewEpisode",
   "service": {
-    "path": "/ViewPublisher",
-    "body": "ViewPublisherRequestBody",
+    "path": "/ViewEpisode",
+    "body": "ViewEpisodeRequestBody",
     "auth": {
       "key": "auth",
       "type": "ClientSession",
       "import": "@phading/user_session_service_interface/client_session"
     },
-    "response": "ViewPublisherResponse",
+    "response": "ViewEpisodeResponse",
     "outputWebClient": "./client_requests",
     "outputHandler": "./server_handlers"
   }
 }, {
-  "name": "GetViewedPublishersRequestBody",
+  "name": "GetViewedEpisodesRequestBody",
   "message": {
     "fields": [{
-      "name": "lastTimeCursor",
+      "name": "lastViewedTimeCursor",
       "type": "number"
     }]
   }
 }, {
-  "name": "GetViewedPublishersResponse",
+  "name": "GetViewedEpisodesResponse",
   "message": {
     "fields": [{
-      "name": "publishers",
-      "type": "PublisherViewed",
-      "import": "./publisher_viewed",
+      "name": "episodes",
+      "type": "EpisodeViewed",
+      "import": "./episode_viewed",
       "isArray": true
     }]
   }
 }, {
-  "name": "GetViewedPublishers",
+  "name": "GetViewedEpisodes",
   "service": {
-    "path": "/GetViewedPublishers",
-    "body": "GetViewedPublishersRequestBody",
+    "path": "/GetViewedEpisodes",
+    "body": "GetViewedEpisodesRequestBody",
     "auth": {
       "key": "auth",
       "type": "ClientSession",
       "import": "@phading/user_session_service_interface/client_session"
     },
-    "response": "GetViewedPublishersResponse",
+    "response": "GetViewedEpisodesResponse",
     "outputWebClient": "./client_requests",
     "outputHandler": "./server_handlers"
   }
@@ -152,7 +72,7 @@
   "name": "GetPostedCommentsRequestBody",
   "message": {
     "fields": [{
-      "name": "lastTimeCursor",
+      "name": "lastPostedTimeCursor",
       "type": "number"
     }]
   }
@@ -165,5 +85,19 @@
       "import": "./comment_posted",
       "isArray": true
     }]
+  }
+}, {
+  "name": "GetPostedComments",
+  "service": {
+    "path": "/GetPostedComments",
+    "body": "GetPostedCommentsRequestBody",
+    "auth": {
+      "key": "auth",
+      "type": "ClientSession",
+      "import": "@phading/user_session_service_interface/client_session"
+    },
+    "response": "GetPostedCommentsResponse",
+    "outputWebClient": "./client_requests",
+    "outputHandler": "./server_handlers"
   }
 }]

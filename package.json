@@ -1,6 +1,6 @@
 {
   "name": "@phading/user_activity_service_interface",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "The interface of UserActivityService.",
   "repository": {
     "type": "git",

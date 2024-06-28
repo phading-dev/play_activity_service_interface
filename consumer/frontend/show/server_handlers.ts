@@ -1,48 +1,30 @@
 import { ServiceHandlerInterface } from '@selfage/service_descriptor/service_handler_interface';
-import { SYNC_METER_READING, SyncMeterReadingRequestBody, SyncMeterReadingResponse, VIEW_SEASON, ViewSeasonRequestBody, ViewSeasonResponse, GET_VIEWED_SEASONS, GetViewedSeasonsRequestBody, GetViewedSeasonsResponse, VIEW_PUBLISHER, ViewPublisherRequestBody, ViewPublisherResponse, GET_VIEWED_PUBLISHERS, GetViewedPublishersRequestBody, GetViewedPublishersResponse } from './interface';
+import { VIEW_EPISODE, ViewEpisodeRequestBody, ViewEpisodeResponse, GET_VIEWED_EPISODES, GetViewedEpisodesRequestBody, GetViewedEpisodesResponse, GET_POSTED_COMMENTS, GetPostedCommentsRequestBody, GetPostedCommentsResponse } from './interface';
 import { ClientSession } from '@phading/user_session_service_interface/client_session';
 
-export abstract class SyncMeterReadingHandlerInterface implements ServiceHandlerInterface {
-  public descriptor = SYNC_METER_READING;
+export abstract class ViewEpisodeHandlerInterface implements ServiceHandlerInterface {
+  public descriptor = VIEW_EPISODE;
   public abstract handle(
     loggingPrefix: string,
-    body: SyncMeterReadingRequestBody,
+    body: ViewEpisodeRequestBody,
     auth: ClientSession,
-  ): Promise<SyncMeterReadingResponse>;
+  ): Promise<ViewEpisodeResponse>;
 }
 
-export abstract class ViewSeasonHandlerInterface implements ServiceHandlerInterface {
-  public descriptor = VIEW_SEASON;
+export abstract class GetViewedEpisodesHandlerInterface implements ServiceHandlerInterface {
+  public descriptor = GET_VIEWED_EPISODES;
   public abstract handle(
     loggingPrefix: string,
-    body: ViewSeasonRequestBody,
+    body: GetViewedEpisodesRequestBody,
     auth: ClientSession,
-  ): Promise<ViewSeasonResponse>;
+  ): Promise<GetViewedEpisodesResponse>;
 }
 
-export abstract class GetViewedSeasonsHandlerInterface implements ServiceHandlerInterface {
-  public descriptor = GET_VIEWED_SEASONS;
+export abstract class GetPostedCommentsHandlerInterface implements ServiceHandlerInterface {
+  public descriptor = GET_POSTED_COMMENTS;
   public abstract handle(
     loggingPrefix: string,
-    body: GetViewedSeasonsRequestBody,
+    body: GetPostedCommentsRequestBody,
     auth: ClientSession,
-  ): Promise<GetViewedSeasonsResponse>;
-}
-
-export abstract class ViewPublisherHandlerInterface implements ServiceHandlerInterface {
-  public descriptor = VIEW_PUBLISHER;
-  public abstract handle(
-    loggingPrefix: string,
-    body: ViewPublisherRequestBody,
-    auth: ClientSession,
-  ): Promise<ViewPublisherResponse>;
-}
-
-export abstract class GetViewedPublishersHandlerInterface implements ServiceHandlerInterface {
-  public descriptor = GET_VIEWED_PUBLISHERS;
-  public abstract handle(
-    loggingPrefix: string,
-    body: GetViewedPublishersRequestBody,
-    auth: ClientSession,
-  ): Promise<GetViewedPublishersResponse>;
+  ): Promise<GetPostedCommentsResponse>;
 }

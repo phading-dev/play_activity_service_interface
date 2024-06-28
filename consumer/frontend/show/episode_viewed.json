@@ -1,5 +1,5 @@
 [{
-  "name": "PublisherSnapshot",
+  "name": "PublisherSummary",
   "message": {
     "fields": [{
       "name": "accountId",
@@ -13,7 +13,7 @@
     }]
   }
 }, {
-  "name": "ContinueEpisode",
+  "name": "Episode",
   "message": {
     "fields": [{
       "name": "episodeId",
@@ -21,16 +21,24 @@
     }, {
       "name": "name",
       "type": "string"
+    }, {
+      "name": "continueTimestamp",
+      "type": "number",
+      "comment": "Timestamp in seconds of the video."
+    }, {
+      "name": "length",
+      "type": "number",
+      "comment": "In seconds"
     }]
   }
 }, {
-  "name": "SeasonViewed",
+  "name": "EpisodeViewed",
   "message": {
     "fields": [{
       "name": "seasonId",
       "type": "string"
     }, {
-      "name": "name",
+      "name": "seasonName",
       "type": "string"
     }, {
       "name": "coverImagePath",
@@ -40,13 +48,13 @@
       "type": "number",
       "comment": "Small number means low quality and price."
     }, {
-      "name": "continueEpisode",
-      "type": "ContinueEpisode"
+      "name": "episode",
+      "type": "Episode"
     }, {
       "name": "publisher",
-      "type": "PublisherSnapshot"
+      "type": "PublisherSummary"
     }, {
-      "name": "viewedTime",
+      "name": "lastViewedTime",
       "type": "number",
       "comment": "Timestamp in seconds."
     }]

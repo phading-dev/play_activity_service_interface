@@ -1,13 +1,13 @@
 import { MessageDescriptor, PrimitiveType } from '@selfage/message/descriptor';
 
-export interface PublisherSnapshot {
+export interface PublisherSummary {
   accountId?: string,
   naturalName?: string,
   avatarSmallPath?: string,
 }
 
-export let PUBLISHER_SNAPSHOT: MessageDescriptor<PublisherSnapshot> = {
-  name: 'PublisherSnapshot',
+export let PUBLISHER_SUMMARY: MessageDescriptor<PublisherSummary> = {
+  name: 'PublisherSummary',
   fields: [
     {
       name: 'accountId',
@@ -24,13 +24,17 @@ export let PUBLISHER_SNAPSHOT: MessageDescriptor<PublisherSnapshot> = {
   ]
 };
 
-export interface ContinueEpisode {
+export interface Episode {
   episodeId?: string,
   name?: string,
+/* Timestamp in seconds of the video. */
+  continueTimestamp?: number,
+/* In seconds */
+  length?: number,
 }
 
-export let CONTINUE_EPISODE: MessageDescriptor<ContinueEpisode> = {
-  name: 'ContinueEpisode',
+export let EPISODE: MessageDescriptor<Episode> = {
+  name: 'Episode',
   fields: [
     {
       name: 'episodeId',
@@ -40,30 +44,38 @@ export let CONTINUE_EPISODE: MessageDescriptor<ContinueEpisode> = {
       name: 'name',
       primitiveType: PrimitiveType.STRING,
     },
+    {
+      name: 'continueTimestamp',
+      primitiveType: PrimitiveType.NUMBER,
+    },
+    {
+      name: 'length',
+      primitiveType: PrimitiveType.NUMBER,
+    },
   ]
 };
 
-export interface SeasonViewed {
+export interface EpisodeViewed {
   seasonId?: string,
-  name?: string,
+  seasonName?: string,
   coverImagePath?: string,
 /* Small number means low quality and price. */
   grade?: number,
-  continueEpisode?: ContinueEpisode,
-  publisher?: PublisherSnapshot,
+  episode?: Episode,
+  publisher?: PublisherSummary,
 /* Timestamp in seconds. */
-  viewedTime?: number,
+  lastViewedTime?: number,
 }
 
-export let SEASON_VIEWED: MessageDescriptor<SeasonViewed> = {
-  name: 'SeasonViewed',
+export let EPISODE_VIEWED: MessageDescriptor<EpisodeViewed> = {
+  name: 'EpisodeViewed',
   fields: [
     {
       name: 'seasonId',
       primitiveType: PrimitiveType.STRING,
     },
     {
-      name: 'name',
+      name: 'seasonName',
       primitiveType: PrimitiveType.STRING,
     },
     {
@@ -75,15 +87,15 @@ export let SEASON_VIEWED: MessageDescriptor<SeasonViewed> = {
       primitiveType: PrimitiveType.NUMBER,
     },
     {
-      name: 'continueEpisode',
-      messageType: CONTINUE_EPISODE,
+      name: 'episode',
+      messageType: EPISODE,
     },
     {
       name: 'publisher',
-      messageType: PUBLISHER_SNAPSHOT,
+      messageType: PUBLISHER_SUMMARY,
     },
     {
-      name: 'viewedTime',
+      name: 'lastViewedTime',
       primitiveType: PrimitiveType.NUMBER,
     },
   ]

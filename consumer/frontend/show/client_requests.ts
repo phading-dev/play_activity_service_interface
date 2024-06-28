@@ -1,52 +1,32 @@
 import { WebServiceClientInterface } from '@selfage/service_descriptor/web_service_client_interface';
-import { SyncMeterReadingRequestBody, SyncMeterReadingResponse, SYNC_METER_READING, ViewSeasonRequestBody, ViewSeasonResponse, VIEW_SEASON, GetViewedSeasonsRequestBody, GetViewedSeasonsResponse, GET_VIEWED_SEASONS, ViewPublisherRequestBody, ViewPublisherResponse, VIEW_PUBLISHER, GetViewedPublishersRequestBody, GetViewedPublishersResponse, GET_VIEWED_PUBLISHERS } from './interface';
+import { ViewEpisodeRequestBody, ViewEpisodeResponse, VIEW_EPISODE, GetViewedEpisodesRequestBody, GetViewedEpisodesResponse, GET_VIEWED_EPISODES, GetPostedCommentsRequestBody, GetPostedCommentsResponse, GET_POSTED_COMMENTS } from './interface';
 
-export function syncMeterReading(
+export function viewEpisode(
   client: WebServiceClientInterface,
-  body: SyncMeterReadingRequestBody,
-): Promise<SyncMeterReadingResponse> {
+  body: ViewEpisodeRequestBody,
+): Promise<ViewEpisodeResponse> {
   return client.send({
-    descriptor: SYNC_METER_READING,
+    descriptor: VIEW_EPISODE,
     body,
   });
 }
 
-export function viewSeason(
+export function getViewedEpisodes(
   client: WebServiceClientInterface,
-  body: ViewSeasonRequestBody,
-): Promise<ViewSeasonResponse> {
+  body: GetViewedEpisodesRequestBody,
+): Promise<GetViewedEpisodesResponse> {
   return client.send({
-    descriptor: VIEW_SEASON,
+    descriptor: GET_VIEWED_EPISODES,
     body,
   });
 }
 
-export function getViewedSeasons(
+export function getPostedComments(
   client: WebServiceClientInterface,
-  body: GetViewedSeasonsRequestBody,
-): Promise<GetViewedSeasonsResponse> {
+  body: GetPostedCommentsRequestBody,
+): Promise<GetPostedCommentsResponse> {
   return client.send({
-    descriptor: GET_VIEWED_SEASONS,
-    body,
-  });
-}
-
-export function viewPublisher(
-  client: WebServiceClientInterface,
-  body: ViewPublisherRequestBody,
-): Promise<ViewPublisherResponse> {
-  return client.send({
-    descriptor: VIEW_PUBLISHER,
-    body,
-  });
-}
-
-export function getViewedPublishers(
-  client: WebServiceClientInterface,
-  body: GetViewedPublishersRequestBody,
-): Promise<GetViewedPublishersResponse> {
-  return client.send({
-    descriptor: GET_VIEWED_PUBLISHERS,
+    descriptor: GET_POSTED_COMMENTS,
     body,
   });
 }
