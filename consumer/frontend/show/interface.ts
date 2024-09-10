@@ -1,33 +1,32 @@
-import { MessageDescriptor, PrimitiveType } from '@selfage/message/descriptor';
-import { ServiceDescriptor } from '@selfage/service_descriptor';
-import { CLIENT_SESSION } from '@phading/user_session_service_interface/client_session';
+import { PrimitiveType, MessageDescriptor } from '@selfage/message/descriptor';
 import { EpisodeViewed, EPISODE_VIEWED } from './episode_viewed';
 import { CommentPosted, COMMENT_POSTED } from './comment_posted';
+import { CLIENT_SESSION } from '@phading/user_session_service_interface/client_session';
+import { WebRemoteCallDescriptor } from '@selfage/service_descriptor';
 
 export interface ViewEpisodeRequestBody {
-/* If empty, a new id will be created and returned. */
+  /* If empty, a new id will be created and returned. */
   viewSessionId?: string,
   episodeId?: string,
-/* Timestamp in seconds of the video. */
+  /* Timestamp in seconds of the video. */
   episodeTimestamp?: number,
 }
 
 export let VIEW_EPISODE_REQUEST_BODY: MessageDescriptor<ViewEpisodeRequestBody> = {
   name: 'ViewEpisodeRequestBody',
-  fields: [
-    {
-      name: 'viewSessionId',
-      primitiveType: PrimitiveType.STRING,
-    },
-    {
-      name: 'episodeId',
-      primitiveType: PrimitiveType.STRING,
-    },
-    {
-      name: 'episodeTimestamp',
-      primitiveType: PrimitiveType.NUMBER,
-    },
-  ]
+  fields: [{
+    name: 'viewSessionId',
+    index: 1,
+    primitiveType: PrimitiveType.STRING,
+  }, {
+    name: 'episodeId',
+    index: 2,
+    primitiveType: PrimitiveType.STRING,
+  }, {
+    name: 'episodeTimestamp',
+    index: 3,
+    primitiveType: PrimitiveType.NUMBER,
+  }],
 };
 
 export interface ViewEpisodeResponse {
@@ -36,15 +35,68 @@ export interface ViewEpisodeResponse {
 
 export let VIEW_EPISODE_RESPONSE: MessageDescriptor<ViewEpisodeResponse> = {
   name: 'ViewEpisodeResponse',
-  fields: [
-    {
-      name: 'viewSessionId',
-      primitiveType: PrimitiveType.STRING,
-    },
-  ]
+  fields: [{
+    name: 'viewSessionId',
+    index: 1,
+    primitiveType: PrimitiveType.STRING,
+  }],
 };
 
-export let VIEW_EPISODE: ServiceDescriptor = {
+export interface GetViewedEpisodesRequestBody {
+  lastViewedTimeCursor?: number,
+}
+
+export let GET_VIEWED_EPISODES_REQUEST_BODY: MessageDescriptor<GetViewedEpisodesRequestBody> = {
+  name: 'GetViewedEpisodesRequestBody',
+  fields: [{
+    name: 'lastViewedTimeCursor',
+    index: 1,
+    primitiveType: PrimitiveType.NUMBER,
+  }],
+};
+
+export interface GetViewedEpisodesResponse {
+  episodes?: Array<EpisodeViewed>,
+}
+
+export let GET_VIEWED_EPISODES_RESPONSE: MessageDescriptor<GetViewedEpisodesResponse> = {
+  name: 'GetViewedEpisodesResponse',
+  fields: [{
+    name: 'episodes',
+    index: 1,
+    messageType: EPISODE_VIEWED,
+    isArray: true,
+  }],
+};
+
+export interface GetPostedCommentsRequestBody {
+  lastPostedTimeCursor?: number,
+}
+
+export let GET_POSTED_COMMENTS_REQUEST_BODY: MessageDescriptor<GetPostedCommentsRequestBody> = {
+  name: 'GetPostedCommentsRequestBody',
+  fields: [{
+    name: 'lastPostedTimeCursor',
+    index: 1,
+    primitiveType: PrimitiveType.NUMBER,
+  }],
+};
+
+export interface GetPostedCommentsResponse {
+  comments?: Array<CommentPosted>,
+}
+
+export let GET_POSTED_COMMENTS_RESPONSE: MessageDescriptor<GetPostedCommentsResponse> = {
+  name: 'GetPostedCommentsResponse',
+  fields: [{
+    name: 'comments',
+    index: 1,
+    messageType: COMMENT_POSTED,
+    isArray: true,
+  }],
+};
+
+export let VIEW_EPISODE: WebRemoteCallDescriptor = {
   name: "ViewEpisode",
   path: "/ViewEpisode",
   body: {
@@ -59,36 +111,7 @@ export let VIEW_EPISODE: ServiceDescriptor = {
   },
 }
 
-export interface GetViewedEpisodesRequestBody {
-  lastViewedTimeCursor?: number,
-}
-
-export let GET_VIEWED_EPISODES_REQUEST_BODY: MessageDescriptor<GetViewedEpisodesRequestBody> = {
-  name: 'GetViewedEpisodesRequestBody',
-  fields: [
-    {
-      name: 'lastViewedTimeCursor',
-      primitiveType: PrimitiveType.NUMBER,
-    },
-  ]
-};
-
-export interface GetViewedEpisodesResponse {
-  episodes?: Array<EpisodeViewed>,
-}
-
-export let GET_VIEWED_EPISODES_RESPONSE: MessageDescriptor<GetViewedEpisodesResponse> = {
-  name: 'GetViewedEpisodesResponse',
-  fields: [
-    {
-      name: 'episodes',
-      messageType: EPISODE_VIEWED,
-      isArray: true,
-    },
-  ]
-};
-
-export let GET_VIEWED_EPISODES: ServiceDescriptor = {
+export let GET_VIEWED_EPISODES: WebRemoteCallDescriptor = {
   name: "GetViewedEpisodes",
   path: "/GetViewedEpisodes",
   body: {
@@ -103,36 +126,7 @@ export let GET_VIEWED_EPISODES: ServiceDescriptor = {
   },
 }
 
-export interface GetPostedCommentsRequestBody {
-  lastPostedTimeCursor?: number,
-}
-
-export let GET_POSTED_COMMENTS_REQUEST_BODY: MessageDescriptor<GetPostedCommentsRequestBody> = {
-  name: 'GetPostedCommentsRequestBody',
-  fields: [
-    {
-      name: 'lastPostedTimeCursor',
-      primitiveType: PrimitiveType.NUMBER,
-    },
-  ]
-};
-
-export interface GetPostedCommentsResponse {
-  comments?: Array<CommentPosted>,
-}
-
-export let GET_POSTED_COMMENTS_RESPONSE: MessageDescriptor<GetPostedCommentsResponse> = {
-  name: 'GetPostedCommentsResponse',
-  fields: [
-    {
-      name: 'comments',
-      messageType: COMMENT_POSTED,
-      isArray: true,
-    },
-  ]
-};
-
-export let GET_POSTED_COMMENTS: ServiceDescriptor = {
+export let GET_POSTED_COMMENTS: WebRemoteCallDescriptor = {
   name: "GetPostedComments",
   path: "/GetPostedComments",
   body: {

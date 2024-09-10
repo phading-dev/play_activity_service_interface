@@ -1,61 +1,75 @@
 [{
-  "name": "PublisherSummary",
   "message": {
+    "name": "PublisherSummary",
     "fields": [{
       "name": "accountId",
-      "type": "string"
+      "type": "string",
+      "index": 1
     }, {
       "name": "naturalName",
-      "type": "string"
+      "type": "string",
+      "index": 2
     }, {
       "name": "avatarSmallPath",
-      "type": "string"
+      "type": "string",
+      "index": 3
     }]
   }
 }, {
-  "name": "Episode",
   "message": {
+    "name": "Episode",
     "fields": [{
       "name": "episodeId",
-      "type": "string"
+      "type": "string",
+      "index": 1
     }, {
       "name": "name",
-      "type": "string"
+      "type": "string",
+      "index": 2
     }, {
       "name": "continueTimestamp",
       "type": "number",
+      "index": 3,
       "comment": "Timestamp in seconds of the video."
     }, {
       "name": "length",
       "type": "number",
+      "index": 4,
       "comment": "In seconds"
     }]
   }
 }, {
-  "name": "EpisodeViewed",
   "message": {
+    "name": "EpisodeViewed",
     "fields": [{
       "name": "seasonId",
-      "type": "string"
+      "type": "string",
+      "index": 1
     }, {
       "name": "seasonName",
-      "type": "string"
+      "type": "string",
+      "index": 2
     }, {
       "name": "coverImagePath",
-      "type": "string"
+      "type": "string",
+      "index": 3
     }, {
       "name": "grade",
       "type": "number",
+      "index": 4,
       "comment": "Small number means low quality and price."
     }, {
       "name": "episode",
-      "type": "Episode"
+      "type": "Episode",
+      "index": 5
     }, {
       "name": "publisher",
-      "type": "PublisherSummary"
+      "type": "PublisherSummary",
+      "index": 6
     }, {
       "name": "lastViewedTime",
       "type": "number",
+      "index": 7,
       "comment": "Timestamp in seconds."
     }]
   }

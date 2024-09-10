@@ -1,8 +1,8 @@
-import { ServiceHandlerInterface } from '@selfage/service_descriptor/service_handler_interface';
-import { VIEW_EPISODE, ViewEpisodeRequestBody, ViewEpisodeResponse, GET_VIEWED_EPISODES, GetViewedEpisodesRequestBody, GetViewedEpisodesResponse, GET_POSTED_COMMENTS, GetPostedCommentsRequestBody, GetPostedCommentsResponse } from './interface';
+import { ViewEpisodeRequestBody, VIEW_EPISODE, ViewEpisodeResponse, GetViewedEpisodesRequestBody, GET_VIEWED_EPISODES, GetViewedEpisodesResponse, GetPostedCommentsRequestBody, GET_POSTED_COMMENTS, GetPostedCommentsResponse } from './interface';
 import { ClientSession } from '@phading/user_session_service_interface/client_session';
+import { WebHandlerInterface } from '@selfage/service_descriptor/handler_interface';
 
-export abstract class ViewEpisodeHandlerInterface implements ServiceHandlerInterface {
+export abstract class ViewEpisodeHandlerInterface implements WebHandlerInterface {
   public descriptor = VIEW_EPISODE;
   public abstract handle(
     loggingPrefix: string,
@@ -11,7 +11,7 @@ export abstract class ViewEpisodeHandlerInterface implements ServiceHandlerInter
   ): Promise<ViewEpisodeResponse>;
 }
 
-export abstract class GetViewedEpisodesHandlerInterface implements ServiceHandlerInterface {
+export abstract class GetViewedEpisodesHandlerInterface implements WebHandlerInterface {
   public descriptor = GET_VIEWED_EPISODES;
   public abstract handle(
     loggingPrefix: string,
@@ -20,7 +20,7 @@ export abstract class GetViewedEpisodesHandlerInterface implements ServiceHandle
   ): Promise<GetViewedEpisodesResponse>;
 }
 
-export abstract class GetPostedCommentsHandlerInterface implements ServiceHandlerInterface {
+export abstract class GetPostedCommentsHandlerInterface implements WebHandlerInterface {
   public descriptor = GET_POSTED_COMMENTS;
   public abstract handle(
     loggingPrefix: string,

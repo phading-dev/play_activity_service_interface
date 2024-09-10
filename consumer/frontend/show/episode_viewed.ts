@@ -1,4 +1,4 @@
-import { MessageDescriptor, PrimitiveType } from '@selfage/message/descriptor';
+import { PrimitiveType, MessageDescriptor } from '@selfage/message/descriptor';
 
 export interface PublisherSummary {
   accountId?: string,
@@ -8,95 +8,92 @@ export interface PublisherSummary {
 
 export let PUBLISHER_SUMMARY: MessageDescriptor<PublisherSummary> = {
   name: 'PublisherSummary',
-  fields: [
-    {
-      name: 'accountId',
-      primitiveType: PrimitiveType.STRING,
-    },
-    {
-      name: 'naturalName',
-      primitiveType: PrimitiveType.STRING,
-    },
-    {
-      name: 'avatarSmallPath',
-      primitiveType: PrimitiveType.STRING,
-    },
-  ]
+  fields: [{
+    name: 'accountId',
+    index: 1,
+    primitiveType: PrimitiveType.STRING,
+  }, {
+    name: 'naturalName',
+    index: 2,
+    primitiveType: PrimitiveType.STRING,
+  }, {
+    name: 'avatarSmallPath',
+    index: 3,
+    primitiveType: PrimitiveType.STRING,
+  }],
 };
 
 export interface Episode {
   episodeId?: string,
   name?: string,
-/* Timestamp in seconds of the video. */
+  /* Timestamp in seconds of the video. */
   continueTimestamp?: number,
-/* In seconds */
+  /* In seconds */
   length?: number,
 }
 
 export let EPISODE: MessageDescriptor<Episode> = {
   name: 'Episode',
-  fields: [
-    {
-      name: 'episodeId',
-      primitiveType: PrimitiveType.STRING,
-    },
-    {
-      name: 'name',
-      primitiveType: PrimitiveType.STRING,
-    },
-    {
-      name: 'continueTimestamp',
-      primitiveType: PrimitiveType.NUMBER,
-    },
-    {
-      name: 'length',
-      primitiveType: PrimitiveType.NUMBER,
-    },
-  ]
+  fields: [{
+    name: 'episodeId',
+    index: 1,
+    primitiveType: PrimitiveType.STRING,
+  }, {
+    name: 'name',
+    index: 2,
+    primitiveType: PrimitiveType.STRING,
+  }, {
+    name: 'continueTimestamp',
+    index: 3,
+    primitiveType: PrimitiveType.NUMBER,
+  }, {
+    name: 'length',
+    index: 4,
+    primitiveType: PrimitiveType.NUMBER,
+  }],
 };
 
 export interface EpisodeViewed {
   seasonId?: string,
   seasonName?: string,
   coverImagePath?: string,
-/* Small number means low quality and price. */
+  /* Small number means low quality and price. */
   grade?: number,
   episode?: Episode,
   publisher?: PublisherSummary,
-/* Timestamp in seconds. */
+  /* Timestamp in seconds. */
   lastViewedTime?: number,
 }
 
 export let EPISODE_VIEWED: MessageDescriptor<EpisodeViewed> = {
   name: 'EpisodeViewed',
-  fields: [
-    {
-      name: 'seasonId',
-      primitiveType: PrimitiveType.STRING,
-    },
-    {
-      name: 'seasonName',
-      primitiveType: PrimitiveType.STRING,
-    },
-    {
-      name: 'coverImagePath',
-      primitiveType: PrimitiveType.STRING,
-    },
-    {
-      name: 'grade',
-      primitiveType: PrimitiveType.NUMBER,
-    },
-    {
-      name: 'episode',
-      messageType: EPISODE,
-    },
-    {
-      name: 'publisher',
-      messageType: PUBLISHER_SUMMARY,
-    },
-    {
-      name: 'lastViewedTime',
-      primitiveType: PrimitiveType.NUMBER,
-    },
-  ]
+  fields: [{
+    name: 'seasonId',
+    index: 1,
+    primitiveType: PrimitiveType.STRING,
+  }, {
+    name: 'seasonName',
+    index: 2,
+    primitiveType: PrimitiveType.STRING,
+  }, {
+    name: 'coverImagePath',
+    index: 3,
+    primitiveType: PrimitiveType.STRING,
+  }, {
+    name: 'grade',
+    index: 4,
+    primitiveType: PrimitiveType.NUMBER,
+  }, {
+    name: 'episode',
+    index: 5,
+    messageType: EPISODE,
+  }, {
+    name: 'publisher',
+    index: 6,
+    messageType: PUBLISHER_SUMMARY,
+  }, {
+    name: 'lastViewedTime',
+    index: 7,
+    primitiveType: PrimitiveType.NUMBER,
+  }],
 };

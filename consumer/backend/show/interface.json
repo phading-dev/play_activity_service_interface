@@ -1,23 +1,27 @@
 [{
-  "name": "RecordPostedCommentRequestBody",
   "message": {
+    "name": "RecordPostedCommentRequestBody",
     "fields": [{
       "name": "commentId",
-      "type": "string"
+      "type": "string",
+      "index": 1
     }]
   }
 }, {
-  "name": "RecordPostedCommentResponse",
   "message": {
+    "name": "RecordPostedCommentResponse",
     "fields": []
   }
 }, {
-  "name": "RecordPostedComment",
-  "service": {
-    "path": "/RecordPostedComment",
-    "body": "RecordPostedCommentRequestBody",
-    "response": "RecordPostedCommentResponse",
-    "outputWebClient": "./client_requests",
-    "outputHandler": "./server_handlers"
+  "nodeService": {
+    "name": "UserActivityConsumerBackendShowService",
+    "remoteCalls": [{
+      "name": "RecordPostedComment",
+      "path": "/RecordPostedComment",
+      "body": "RecordPostedCommentRequestBody",
+      "response": "RecordPostedCommentResponse"
+    }],
+    "outputClient": "./consumer/backend/show/client",
+    "outputHandler": "./consumer/backend/show/handler"
   }
 }]

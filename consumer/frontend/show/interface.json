@@ -1,103 +1,105 @@
 [{
-  "name": "ViewEpisodeRequestBody",
   "message": {
+    "name": "ViewEpisodeRequestBody",
     "fields": [{
       "name": "viewSessionId",
       "type": "string",
+      "index": 1,
       "comment": "If empty, a new id will be created and returned."
     }, {
       "name": "episodeId",
-      "type": "string"
+      "type": "string",
+      "index": 2
     }, {
       "name": "episodeTimestamp",
       "type": "number",
+      "index": 3,
       "comment": "Timestamp in seconds of the video."
     }]
   }
 }, {
-  "name": "ViewEpisodeResponse",
   "message": {
+    "name": "ViewEpisodeResponse",
     "fields": [{
       "name": "viewSessionId",
-      "type": "string"
+      "type": "string",
+      "index": 1
     }]
   }
 }, {
-  "name": "ViewEpisode",
-  "service": {
-    "path": "/ViewEpisode",
-    "body": "ViewEpisodeRequestBody",
-    "auth": {
-      "key": "auth",
-      "type": "ClientSession",
-      "import": "@phading/user_session_service_interface/client_session"
-    },
-    "response": "ViewEpisodeResponse",
-    "outputWebClient": "./client_requests",
-    "outputHandler": "./server_handlers"
-  }
-}, {
-  "name": "GetViewedEpisodesRequestBody",
   "message": {
+    "name": "GetViewedEpisodesRequestBody",
     "fields": [{
       "name": "lastViewedTimeCursor",
-      "type": "number"
+      "type": "number",
+      "index": 1
     }]
   }
 }, {
-  "name": "GetViewedEpisodesResponse",
   "message": {
+    "name": "GetViewedEpisodesResponse",
     "fields": [{
       "name": "episodes",
       "type": "EpisodeViewed",
-      "import": "./episode_viewed",
-      "isArray": true
+      "import": "./consumer/frontend/show/episode_viewed",
+      "isArray": true,
+      "index": 1
     }]
   }
 }, {
-  "name": "GetViewedEpisodes",
-  "service": {
-    "path": "/GetViewedEpisodes",
-    "body": "GetViewedEpisodesRequestBody",
-    "auth": {
-      "key": "auth",
-      "type": "ClientSession",
-      "import": "@phading/user_session_service_interface/client_session"
-    },
-    "response": "GetViewedEpisodesResponse",
-    "outputWebClient": "./client_requests",
-    "outputHandler": "./server_handlers"
-  }
-}, {
-  "name": "GetPostedCommentsRequestBody",
   "message": {
+    "name": "GetPostedCommentsRequestBody",
     "fields": [{
       "name": "lastPostedTimeCursor",
-      "type": "number"
+      "type": "number",
+      "index": 1
     }]
   }
 }, {
-  "name": "GetPostedCommentsResponse",
   "message": {
+    "name": "GetPostedCommentsResponse",
     "fields": [{
       "name": "comments",
       "type": "CommentPosted",
-      "import": "./comment_posted",
-      "isArray": true
+      "import": "./consumer/frontend/show/comment_posted",
+      "isArray": true,
+      "index": 1
     }]
   }
 }, {
-  "name": "GetPostedComments",
-  "service": {
-    "path": "/GetPostedComments",
-    "body": "GetPostedCommentsRequestBody",
-    "auth": {
-      "key": "auth",
-      "type": "ClientSession",
-      "import": "@phading/user_session_service_interface/client_session"
-    },
-    "response": "GetPostedCommentsResponse",
-    "outputWebClient": "./client_requests",
-    "outputHandler": "./server_handlers"
+  "webService": {
+    "remoteCalls": [{
+      "name": "ViewEpisode",
+      "path": "/ViewEpisode",
+      "body": "ViewEpisodeRequestBody",
+      "auth": {
+        "key": "auth",
+        "type": "ClientSession",
+        "import": "@phading/user_session_service_interface/client_session"
+      },
+      "response": "ViewEpisodeResponse"
+    }, {
+      "name": "GetViewedEpisodes",
+      "path": "/GetViewedEpisodes",
+      "body": "GetViewedEpisodesRequestBody",
+      "auth": {
+        "key": "auth",
+        "type": "ClientSession",
+        "import": "@phading/user_session_service_interface/client_session"
+      },
+      "response": "GetViewedEpisodesResponse"
+    }, {
+      "name": "GetPostedComments",
+      "path": "/GetPostedComments",
+      "body": "GetPostedCommentsRequestBody",
+      "auth": {
+        "key": "auth",
+        "type": "ClientSession",
+        "import": "@phading/user_session_service_interface/client_session"
+      },
+      "response": "GetPostedCommentsResponse"
+    }],
+    "outputClient": "./consumer/frontend/show/client",
+    "outputHandler": "./consumer/frontend/show/handler"
   }
 }]
