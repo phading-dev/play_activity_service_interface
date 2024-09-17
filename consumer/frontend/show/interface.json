@@ -68,35 +68,24 @@
   }
 }, {
   "webService": {
+    "name": "UserActivityConsumerFeShowService",
     "remoteCalls": [{
       "name": "ViewEpisode",
       "path": "/ViewEpisode",
       "body": "ViewEpisodeRequestBody",
-      "auth": {
-        "key": "auth",
-        "type": "ClientSession",
-        "import": "@phading/user_session_service_interface/client_session"
-      },
+      "sessionKey": "sk",
       "response": "ViewEpisodeResponse"
     }, {
       "name": "GetViewedEpisodes",
       "path": "/GetViewedEpisodes",
       "body": "GetViewedEpisodesRequestBody",
-      "auth": {
-        "key": "auth",
-        "type": "ClientSession",
-        "import": "@phading/user_session_service_interface/client_session"
-      },
+      "sessionKey": "sk",
       "response": "GetViewedEpisodesResponse"
     }, {
       "name": "GetPostedComments",
       "path": "/GetPostedComments",
       "body": "GetPostedCommentsRequestBody",
-      "auth": {
-        "key": "auth",
-        "type": "ClientSession",
-        "import": "@phading/user_session_service_interface/client_session"
-      },
+      "sessionKey": "sk",
       "response": "GetPostedCommentsResponse"
     }],
     "outputClient": "./consumer/frontend/show/client",

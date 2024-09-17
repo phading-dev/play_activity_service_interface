@@ -1,5 +1,4 @@
 import { ViewEpisodeRequestBody, VIEW_EPISODE, ViewEpisodeResponse, GetViewedEpisodesRequestBody, GET_VIEWED_EPISODES, GetViewedEpisodesResponse, GetPostedCommentsRequestBody, GET_POSTED_COMMENTS, GetPostedCommentsResponse } from './interface';
-import { ClientSession } from '@phading/user_session_service_interface/client_session';
 import { WebHandlerInterface } from '@selfage/service_descriptor/handler_interface';
 
 export abstract class ViewEpisodeHandlerInterface implements WebHandlerInterface {
@@ -7,7 +6,7 @@ export abstract class ViewEpisodeHandlerInterface implements WebHandlerInterface
   public abstract handle(
     loggingPrefix: string,
     body: ViewEpisodeRequestBody,
-    auth: ClientSession,
+    sessionStr: string,
   ): Promise<ViewEpisodeResponse>;
 }
 
@@ -16,7 +15,7 @@ export abstract class GetViewedEpisodesHandlerInterface implements WebHandlerInt
   public abstract handle(
     loggingPrefix: string,
     body: GetViewedEpisodesRequestBody,
-    auth: ClientSession,
+    sessionStr: string,
   ): Promise<GetViewedEpisodesResponse>;
 }
 
@@ -25,6 +24,6 @@ export abstract class GetPostedCommentsHandlerInterface implements WebHandlerInt
   public abstract handle(
     loggingPrefix: string,
     body: GetPostedCommentsRequestBody,
-    auth: ClientSession,
+    sessionStr: string,
   ): Promise<GetPostedCommentsResponse>;
 }

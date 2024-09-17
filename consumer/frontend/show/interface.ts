@@ -1,7 +1,6 @@
 import { PrimitiveType, MessageDescriptor } from '@selfage/message/descriptor';
 import { EpisodeViewed, EPISODE_VIEWED } from './episode_viewed';
 import { CommentPosted, COMMENT_POSTED } from './comment_posted';
-import { CLIENT_SESSION } from '@phading/user_session_service_interface/client_session';
 import { WebRemoteCallDescriptor } from '@selfage/service_descriptor';
 
 export interface ViewEpisodeRequestBody {
@@ -102,10 +101,7 @@ export let VIEW_EPISODE: WebRemoteCallDescriptor = {
   body: {
     messageType: VIEW_EPISODE_REQUEST_BODY,
   },
-  auth: {
-    key: "auth",
-    type: CLIENT_SESSION
-  },
+  sessionKey: "sk",
   response: {
     messageType: VIEW_EPISODE_RESPONSE,
   },
@@ -117,10 +113,7 @@ export let GET_VIEWED_EPISODES: WebRemoteCallDescriptor = {
   body: {
     messageType: GET_VIEWED_EPISODES_REQUEST_BODY,
   },
-  auth: {
-    key: "auth",
-    type: CLIENT_SESSION
-  },
+  sessionKey: "sk",
   response: {
     messageType: GET_VIEWED_EPISODES_RESPONSE,
   },
@@ -132,10 +125,7 @@ export let GET_POSTED_COMMENTS: WebRemoteCallDescriptor = {
   body: {
     messageType: GET_POSTED_COMMENTS_REQUEST_BODY,
   },
-  auth: {
-    key: "auth",
-    type: CLIENT_SESSION
-  },
+  sessionKey: "sk",
   response: {
     messageType: GET_POSTED_COMMENTS_RESPONSE,
   },
