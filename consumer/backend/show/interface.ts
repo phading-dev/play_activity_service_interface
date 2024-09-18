@@ -22,6 +22,32 @@ export let RECORD_POSTED_COMMENT_RESPONSE: MessageDescriptor<RecordPostedComment
   fields: [],
 };
 
+export interface GetContinueTimestampForEpisodeRequestBody {
+  episodeId?: string,
+}
+
+export let GET_CONTINUE_TIMESTAMP_FOR_EPISODE_REQUEST_BODY: MessageDescriptor<GetContinueTimestampForEpisodeRequestBody> = {
+  name: 'GetContinueTimestampForEpisodeRequestBody',
+  fields: [{
+    name: 'episodeId',
+    index: 1,
+    primitiveType: PrimitiveType.STRING,
+  }],
+};
+
+export interface GetContinueTimestampForEpisodeResponse {
+  continueTimestamp?: number,
+}
+
+export let GET_CONTINUE_TIMESTAMP_FOR_EPISODE_RESPONSE: MessageDescriptor<GetContinueTimestampForEpisodeResponse> = {
+  name: 'GetContinueTimestampForEpisodeResponse',
+  fields: [{
+    name: 'continueTimestamp',
+    index: 1,
+    primitiveType: PrimitiveType.NUMBER,
+  }],
+};
+
 export let RECORD_POSTED_COMMENT: NodeRemoteCallDescriptor = {
   name: "RecordPostedComment",
   path: "/RecordPostedComment",
@@ -30,5 +56,16 @@ export let RECORD_POSTED_COMMENT: NodeRemoteCallDescriptor = {
   },
   response: {
     messageType: RECORD_POSTED_COMMENT_RESPONSE,
+  },
+}
+
+export let GET_CONTINUE_TIMESTAMP_FOR_EPISODE: NodeRemoteCallDescriptor = {
+  name: "GetContinueTimestampForEpisode",
+  path: "/GetContinueTimestampForEpisode",
+  body: {
+    messageType: GET_CONTINUE_TIMESTAMP_FOR_EPISODE_REQUEST_BODY,
+  },
+  response: {
+    messageType: GET_CONTINUE_TIMESTAMP_FOR_EPISODE_RESPONSE,
   },
 }
