@@ -7,13 +7,17 @@
       "index": 1,
       "comment": "If empty, a new id will be created and returned."
     }, {
-      "name": "episodeId",
+      "name": "seasonId",
       "type": "string",
       "index": 2
     }, {
-      "name": "episodeTimestamp",
+      "name": "episodeId",
+      "type": "string",
+      "index": 3
+    }, {
+      "name": "watchTimestamp",
       "type": "number",
-      "index": 3,
+      "index": 4,
       "comment": "Timestamp in seconds of the video."
     }]
   }

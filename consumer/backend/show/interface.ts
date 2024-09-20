@@ -23,14 +23,19 @@ export let RECORD_POSTED_COMMENT_RESPONSE: MessageDescriptor<RecordPostedComment
 };
 
 export interface GetContinueTimestampForEpisodeRequestBody {
+  seasonId?: string,
   episodeId?: string,
 }
 
 export let GET_CONTINUE_TIMESTAMP_FOR_EPISODE_REQUEST_BODY: MessageDescriptor<GetContinueTimestampForEpisodeRequestBody> = {
   name: 'GetContinueTimestampForEpisodeRequestBody',
   fields: [{
-    name: 'episodeId',
+    name: 'seasonId',
     index: 1,
+    primitiveType: PrimitiveType.STRING,
+  }, {
+    name: 'episodeId',
+    index: 2,
     primitiveType: PrimitiveType.STRING,
   }],
 };

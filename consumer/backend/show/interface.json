@@ -16,9 +16,13 @@
   "message": {
     "name": "GetContinueTimestampForEpisodeRequestBody",
     "fields": [{
-      "name": "episodeId",
+      "name": "seasonId",
       "type": "string",
       "index": 1
+    }, {
+      "name": "episodeId",
+      "type": "string",
+      "index": 2
     }]
   }
 }, {

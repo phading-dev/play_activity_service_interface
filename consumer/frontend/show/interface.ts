@@ -6,9 +6,10 @@ import { WebRemoteCallDescriptor } from '@selfage/service_descriptor';
 export interface ViewEpisodeRequestBody {
   /* If empty, a new id will be created and returned. */
   viewSessionId?: string,
+  seasonId?: string,
   episodeId?: string,
   /* Timestamp in seconds of the video. */
-  episodeTimestamp?: number,
+  watchTimestamp?: number,
 }
 
 export let VIEW_EPISODE_REQUEST_BODY: MessageDescriptor<ViewEpisodeRequestBody> = {
@@ -18,12 +19,16 @@ export let VIEW_EPISODE_REQUEST_BODY: MessageDescriptor<ViewEpisodeRequestBody> 
     index: 1,
     primitiveType: PrimitiveType.STRING,
   }, {
-    name: 'episodeId',
+    name: 'seasonId',
     index: 2,
     primitiveType: PrimitiveType.STRING,
   }, {
-    name: 'episodeTimestamp',
+    name: 'episodeId',
     index: 3,
+    primitiveType: PrimitiveType.STRING,
+  }, {
+    name: 'watchTimestamp',
+    index: 4,
     primitiveType: PrimitiveType.NUMBER,
   }],
 };
