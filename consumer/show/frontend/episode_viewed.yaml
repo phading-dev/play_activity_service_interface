@@ -1,0 +1,48 @@
+- message:
+    name: PublisherSummary
+    fields:
+      - name: accountId
+        type: string
+        index: 1
+      - name: naturalName
+        type: string
+        index: 2
+      - name: avatarSmallUrl
+        type: string
+        index: 3
+- message:
+    name: Episode
+    fields:
+      - name: episodeId
+        type: string
+        index: 2
+      - name: continueTimestamp # timestamp in ms of the video
+        type: number
+        index: 3
+      - name: videoLength # ms
+        type: number
+        index: 4
+- message:
+    name: EpisodeViewed
+    fields:
+      - name: seasonId
+        type: string
+        index: 1
+      - name: seasonName
+        type: string
+        index: 2
+      - name: coverImageUrl
+        type: string
+        index: 3
+      - name: grade
+        type: number
+        index: 4
+      - name: episode
+        type: Episode
+        index: 5
+      - name: publisher
+        type: PublisherSummary
+        index: 6
+      - name: lastViewedTimestamp
+        type: number
+        index: 7

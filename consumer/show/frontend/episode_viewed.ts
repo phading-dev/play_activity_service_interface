@@ -3,7 +3,7 @@ import { PrimitiveType, MessageDescriptor } from '@selfage/message/descriptor';
 export interface PublisherSummary {
   accountId?: string,
   naturalName?: string,
-  avatarSmallPath?: string,
+  avatarSmallUrl?: string,
 }
 
 export let PUBLISHER_SUMMARY: MessageDescriptor<PublisherSummary> = {
@@ -17,7 +17,7 @@ export let PUBLISHER_SUMMARY: MessageDescriptor<PublisherSummary> = {
     index: 2,
     primitiveType: PrimitiveType.STRING,
   }, {
-    name: 'avatarSmallPath',
+    name: 'avatarSmallUrl',
     index: 3,
     primitiveType: PrimitiveType.STRING,
   }],
@@ -25,21 +25,14 @@ export let PUBLISHER_SUMMARY: MessageDescriptor<PublisherSummary> = {
 
 export interface Episode {
   episodeId?: string,
-  name?: string,
-  /* Timestamp in seconds of the video. */
   continueTimestamp?: number,
-  /* In seconds */
-  length?: number,
+  videoLength?: number,
 }
 
 export let EPISODE: MessageDescriptor<Episode> = {
   name: 'Episode',
   fields: [{
     name: 'episodeId',
-    index: 1,
-    primitiveType: PrimitiveType.STRING,
-  }, {
-    name: 'name',
     index: 2,
     primitiveType: PrimitiveType.STRING,
   }, {
@@ -47,7 +40,7 @@ export let EPISODE: MessageDescriptor<Episode> = {
     index: 3,
     primitiveType: PrimitiveType.NUMBER,
   }, {
-    name: 'length',
+    name: 'videoLength',
     index: 4,
     primitiveType: PrimitiveType.NUMBER,
   }],
@@ -56,13 +49,11 @@ export let EPISODE: MessageDescriptor<Episode> = {
 export interface EpisodeViewed {
   seasonId?: string,
   seasonName?: string,
-  coverImagePath?: string,
-  /* Small number means low quality and price. */
+  coverImageUrl?: string,
   grade?: number,
   episode?: Episode,
   publisher?: PublisherSummary,
-  /* Timestamp in seconds. */
-  lastViewedTime?: number,
+  lastViewedTimestamp?: number,
 }
 
 export let EPISODE_VIEWED: MessageDescriptor<EpisodeViewed> = {
@@ -76,7 +67,7 @@ export let EPISODE_VIEWED: MessageDescriptor<EpisodeViewed> = {
     index: 2,
     primitiveType: PrimitiveType.STRING,
   }, {
-    name: 'coverImagePath',
+    name: 'coverImageUrl',
     index: 3,
     primitiveType: PrimitiveType.STRING,
   }, {
@@ -92,7 +83,7 @@ export let EPISODE_VIEWED: MessageDescriptor<EpisodeViewed> = {
     index: 6,
     messageType: PUBLISHER_SUMMARY,
   }, {
-    name: 'lastViewedTime',
+    name: 'lastViewedTimestamp',
     index: 7,
     primitiveType: PrimitiveType.NUMBER,
   }],

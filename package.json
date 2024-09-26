@@ -1,6 +1,6 @@
 {
   "name": "@phading/user_activity_service_interface",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "The interface of UserActivityService.",
   "repository": {
     "type": "git",
@@ -15,10 +15,10 @@
   "files": [
     "**/*.d.ts",
     "**/*.js",
-    "**/*.json"
+    "**/*.yaml"
   ],
   "devDependencies": {
-    "@selfage/generator_cli": "^2.2.2",
+    "@selfage/generator_cli": "^3.1.1",
     "@selfage/tsconfig": "^1.1.0",
     "@types/node": "^22.5.4",
     "typescript": "^5.6.2"

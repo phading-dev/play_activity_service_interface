@@ -7,8 +7,7 @@ export interface CommentPosted {
   episodeId?: string,
   episodeName?: string,
   content?: string,
-  /* TImestamp in seconds. */
-  postedTime?: string,
+  postedTimestamps?: number,
 }
 
 export let COMMENT_POSTED: MessageDescriptor<CommentPosted> = {
@@ -38,8 +37,8 @@ export let COMMENT_POSTED: MessageDescriptor<CommentPosted> = {
     index: 6,
     primitiveType: PrimitiveType.STRING,
   }, {
-    name: 'postedTime',
+    name: 'postedTimestamps',
     index: 7,
-    primitiveType: PrimitiveType.STRING,
+    primitiveType: PrimitiveType.NUMBER,
   }],
 };

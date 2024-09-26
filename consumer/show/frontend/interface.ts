@@ -4,11 +4,9 @@ import { CommentPosted, COMMENT_POSTED } from './comment_posted';
 import { WebRemoteCallDescriptor } from '@selfage/service_descriptor';
 
 export interface ViewEpisodeRequestBody {
-  /* If empty, a new id will be created and returned. */
   viewSessionId?: string,
   seasonId?: string,
   episodeId?: string,
-  /* Timestamp in seconds of the video. */
   watchTimestamp?: number,
 }
 
