@@ -1,30 +1,30 @@
 {
-  "name": "@phading/user_activity_service_interface",
-  "version": "0.3.0",
-  "description": "The interface of UserActivityService.",
+  "name": "@phading/play_activity_service_interface",
+  "version": "1.0.0",
+  "description": "The interface of PlayActivityService.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/phading-dev/user_activity_service_interface.git"
+    "url": "git+https://github.com/phading-dev/play_activity_service_interface.git"
   },
-  "author": "Yuxuan Xie <teststaybaka@gmail.com> (http://www.yuxuanxie.com)",
+  "author": "Yuxuan Xie <ykuyo.dev@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/phading-dev/user_activity_service_interface/issues"
+    "url": "https://github.com/phading-dev/play_activity_service_interface/issues"
   },
-  "homepage": "https://github.com/phading-dev/user_activity_service_interface#readme",
+  "homepage": "https://github.com/phading-dev/play_activity_service_interface#readme",
   "files": [
     "**/*.d.ts",
     "**/*.js",
     "**/*.yaml"
   ],
   "devDependencies": {
-    "@selfage/generator_cli": "^3.1.1",
+    "@selfage/generator_cli": "^4.2.1",
     "@selfage/tsconfig": "^1.1.0",
     "@types/node": "^22.5.4",
     "typescript": "^5.6.2"
   },
   "dependencies": {
-    "@selfage/message": "^3.5.5",
-    "@selfage/service_descriptor": "^4.3.0"
+    "@selfage/message": "^3.5.7",
+    "@selfage/service_descriptor": "^5.3.1"
   }
 }

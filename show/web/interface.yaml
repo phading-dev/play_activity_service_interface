@@ -1,0 +1,142 @@
+- kind: Message
+  name: WatchEpisodeRequestBody
+  fields:
+    - name: watchSessionId # If empty, a new id will be created and returned.
+      type: string
+      index: 1
+    - name: seasonId
+      type: string
+      index: 2
+    - name: episodeId
+      type: string
+      index: 3
+    - name: watchTimeMs # timestamp of the video
+      type: number
+      index: 4
+- kind: Message
+  name: WatchEpisodeResponse
+  fields:
+    - name: watchSessionId
+      type: string
+      index: 1
+- kind: Message
+  name: ListWatchedEpisodesRequestBody
+  fields:
+    - name: lastWatchedTimeCursor
+      type: number
+      index: 1
+- kind: Message
+  name: ListWatchedEpisodesResponse
+  fields:
+    - name: episodes
+      type: EpisodeWatched
+      import: ./show/web/episode_watched
+      isArray: true
+      index: 1
+- kind: Message
+  name: GetContinueEpisodeRequestBody
+  fields:
+    - name: seasonId
+      type: string
+      index: 1
+- kind: Message
+  name: GetContinueEpisodeResponse
+  fields:
+    - name: episodeId
+      type: string
+      index: 1
+    - name: continueTimeMs # timestamp of the video
+      type: number
+      index: 2
+- kind: Message
+  name: GetContinueTimeForEpisodeRequestBody
+  fields:
+    - name: seasonId
+      type: string
+      index: 1
+    - name: episodeId
+      type: string
+      index: 2
+- kind: Message
+  name: GetContinueTimeForEpisodeResponse
+  fields:
+    - name: continueTimeMs # timestamp of the video
+      type: number
+      index: 1
+- kind: Message
+  name: AddToWatchLaterListRequestBody
+  fields:
+    - name: seasonId
+      type: string
+      index: 1
+- kind: Message
+  name: AddToWatchLaterListResponse
+- kind: Message
+  name: ListFromWatchLaterListRequestBody
+  fields:
+    - name: lastAddedTimeCursor
+      type: number
+      index: 1
+- kind: Message
+  name: ListFromWatchLaterListResponse
+  fields:
+    - name: seasonIds
+      type: string
+      isArray: true
+      index: 1
+- kind: Message
+  name: DeleteFromWatchLaterListRequestBody
+  fields:
+    - name: seasonId
+      type: string
+      index: 1
+- kind: Message
+  name: DeleteFromWatchLaterListResponse
+  fields:
+    - name: seasons
+      type: WatchLaterSeason
+      import: ./show/web/watch_later_season
+      isArray: true
+      index: 1
+- kind: RemoteCallsGroup
+  name: PlayActivityShowWebRemoteCalls
+  service: PlayActivityWebService
+  importService: ./service
+  calls:
+    - name: WatchEpisode
+      path: /WatchEpisode
+      body: WatchEpisodeRequestBody
+      authKey: sk
+      response: WatchEpisodeResponse
+    - name: ListWatchedEpisodes
+      path: /ListWatchedEpisodes
+      body: ListWatchedEpisodesRequestBody
+      authKey: sk
+      response: ListWatchedEpisodesResponse
+    - name: GetContinueEpisode
+      path: /GetContinueEpisode
+      body: GetContinueEpisodeRequestBody
+      authKey: sk
+      response: GetContinueEpisodeResponse
+    - name: GetContinueTimeForEpisode
+      path: /GetContinueTimeForEpisode
+      body: GetContinueTimeForEpisodeRequestBody
+      authKey: sk
+      response: GetContinueTimeForEpisodeResponse
+    - name: AddToWatchLaterList
+      path: /AddToWatchLaterList
+      body: AddToWatchLaterListRequestBody
+      authKey: sk
+      response: AddToWatchLaterListResponse
+    - name: DeleteFromWatchLaterList
+      path: /DeleteFromWatchLaterList
+      body: AddToWatchLaterListRequestBody
+      authKey: sk
+      response: AddToWatchLaterListResponse
+    - name: ListFromWatchLaterList
+      path: /ListFromWatchLaterList
+      body: ListFromWatchLaterListRequestBody
+      authKey: sk
+      response: ListFromWatchLaterListResponse
+  outputClient: ./show/web/client
+  outputHandler: ./show/web/handler
