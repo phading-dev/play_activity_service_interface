@@ -1,4 +1,4 @@
-import { WatchEpisodeRequestBody, WatchEpisodeResponse, WATCH_EPISODE, ListWatchedEpisodesRequestBody, ListWatchedEpisodesResponse, LIST_WATCHED_EPISODES, GetContinueEpisodeRequestBody, GetContinueEpisodeResponse, GET_CONTINUE_EPISODE, GetContinueTimeForEpisodeRequestBody, GetContinueTimeForEpisodeResponse, GET_CONTINUE_TIME_FOR_EPISODE, AddToWatchLaterListRequestBody, AddToWatchLaterListResponse, ADD_TO_WATCH_LATER_LIST, DELETE_FROM_WATCH_LATER_LIST, ListFromWatchLaterListRequestBody, ListFromWatchLaterListResponse, LIST_FROM_WATCH_LATER_LIST } from './interface';
+import { WatchEpisodeRequestBody, WatchEpisodeResponse, WATCH_EPISODE, ListWatchedEpisodesRequestBody, ListWatchedEpisodesResponse, LIST_WATCHED_EPISODES, GetContinueEpisodeRequestBody, GetContinueEpisodeResponse, GET_CONTINUE_EPISODE, GetContinueTimeForEpisodeRequestBody, GetContinueTimeForEpisodeResponse, GET_CONTINUE_TIME_FOR_EPISODE, AddToWatchLaterListRequestBody, AddToWatchLaterListResponse, ADD_TO_WATCH_LATER_LIST, DeleteFromWatchLaterListRequestBody, DeleteFromWatchLaterListResponse, DELETE_FROM_WATCH_LATER_LIST, ListFromWatchLaterListRequestBody, ListFromWatchLaterListResponse, LIST_FROM_WATCH_LATER_LIST } from './interface';
 import { ClientRequestInterface } from '@selfage/service_descriptor/client_request_interface';
 
 export function newWatchEpisodeRequest(
@@ -47,8 +47,8 @@ export function newAddToWatchLaterListRequest(
 }
 
 export function newDeleteFromWatchLaterListRequest(
-  body: AddToWatchLaterListRequestBody,
-): ClientRequestInterface<AddToWatchLaterListResponse> {
+  body: DeleteFromWatchLaterListRequestBody,
+): ClientRequestInterface<DeleteFromWatchLaterListResponse> {
   return {
     descriptor: DELETE_FROM_WATCH_LATER_LIST,
     body,

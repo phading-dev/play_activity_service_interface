@@ -1,6 +1,5 @@
 import { PrimitiveType, MessageDescriptor } from '@selfage/message/descriptor';
 import { EpisodeWatched, EPISODE_WATCHED } from './episode_watched';
-import { WatchLaterSeason, WATCH_LATER_SEASON } from './watch_later_season';
 import { PLAY_ACTIVITY_WEB_SERVICE } from '../../service';
 import { RemoteCallDescriptor } from '@selfage/service_descriptor';
 
@@ -46,20 +45,26 @@ export let WATCH_EPISODE_RESPONSE: MessageDescriptor<WatchEpisodeResponse> = {
 };
 
 export interface ListWatchedEpisodesRequestBody {
+  limit?: number,
   lastWatchedTimeCursor?: number,
 }
 
 export let LIST_WATCHED_EPISODES_REQUEST_BODY: MessageDescriptor<ListWatchedEpisodesRequestBody> = {
   name: 'ListWatchedEpisodesRequestBody',
   fields: [{
-    name: 'lastWatchedTimeCursor',
+    name: 'limit',
     index: 1,
+    primitiveType: PrimitiveType.NUMBER,
+  }, {
+    name: 'lastWatchedTimeCursor',
+    index: 2,
     primitiveType: PrimitiveType.NUMBER,
   }],
 };
 
 export interface ListWatchedEpisodesResponse {
   episodes?: Array<EpisodeWatched>,
+  lastWatchedTimeCursor?: number,
 }
 
 export let LIST_WATCHED_EPISODES_RESPONSE: MessageDescriptor<ListWatchedEpisodesResponse> = {
@@ -69,6 +74,10 @@ export let LIST_WATCHED_EPISODES_RESPONSE: MessageDescriptor<ListWatchedEpisodes
     index: 1,
     messageType: EPISODE_WATCHED,
     isArray: true,
+  }, {
+    name: 'lastWatchedTimeCursor',
+    index: 2,
+    primitiveType: PrimitiveType.NUMBER,
   }],
 };
 
@@ -155,33 +164,6 @@ export let ADD_TO_WATCH_LATER_LIST_RESPONSE: MessageDescriptor<AddToWatchLaterLi
   fields: [],
 };
 
-export interface ListFromWatchLaterListRequestBody {
-  lastAddedTimeCursor?: number,
-}
-
-export let LIST_FROM_WATCH_LATER_LIST_REQUEST_BODY: MessageDescriptor<ListFromWatchLaterListRequestBody> = {
-  name: 'ListFromWatchLaterListRequestBody',
-  fields: [{
-    name: 'lastAddedTimeCursor',
-    index: 1,
-    primitiveType: PrimitiveType.NUMBER,
-  }],
-};
-
-export interface ListFromWatchLaterListResponse {
-  seasonIds?: Array<string>,
-}
-
-export let LIST_FROM_WATCH_LATER_LIST_RESPONSE: MessageDescriptor<ListFromWatchLaterListResponse> = {
-  name: 'ListFromWatchLaterListResponse',
-  fields: [{
-    name: 'seasonIds',
-    index: 1,
-    primitiveType: PrimitiveType.STRING,
-    isArray: true,
-  }],
-};
-
 export interface DeleteFromWatchLaterListRequestBody {
   seasonId?: string,
 }
@@ -196,16 +178,47 @@ export let DELETE_FROM_WATCH_LATER_LIST_REQUEST_BODY: MessageDescriptor<DeleteFr
 };
 
 export interface DeleteFromWatchLaterListResponse {
-  seasons?: Array<WatchLaterSeason>,
 }
 
 export let DELETE_FROM_WATCH_LATER_LIST_RESPONSE: MessageDescriptor<DeleteFromWatchLaterListResponse> = {
   name: 'DeleteFromWatchLaterListResponse',
+  fields: [],
+};
+
+export interface ListFromWatchLaterListRequestBody {
+  limit?: number,
+  addedTimeCursor?: number,
+}
+
+export let LIST_FROM_WATCH_LATER_LIST_REQUEST_BODY: MessageDescriptor<ListFromWatchLaterListRequestBody> = {
+  name: 'ListFromWatchLaterListRequestBody',
   fields: [{
-    name: 'seasons',
+    name: 'limit',
     index: 1,
-    messageType: WATCH_LATER_SEASON,
+    primitiveType: PrimitiveType.NUMBER,
+  }, {
+    name: 'addedTimeCursor',
+    index: 2,
+    primitiveType: PrimitiveType.NUMBER,
+  }],
+};
+
+export interface ListFromWatchLaterListResponse {
+  seasonIds?: Array<string>,
+  addedTimeCursor?: number,
+}
+
+export let LIST_FROM_WATCH_LATER_LIST_RESPONSE: MessageDescriptor<ListFromWatchLaterListResponse> = {
+  name: 'ListFromWatchLaterListResponse',
+  fields: [{
+    name: 'seasonIds',
+    index: 1,
+    primitiveType: PrimitiveType.STRING,
     isArray: true,
+  }, {
+    name: 'addedTimeCursor',
+    index: 2,
+    primitiveType: PrimitiveType.NUMBER,
   }],
 };
 
@@ -216,7 +229,7 @@ export let WATCH_EPISODE: RemoteCallDescriptor = {
   body: {
     messageType: WATCH_EPISODE_REQUEST_BODY,
   },
-  authKey: "sk",
+  authKey: "a",
   response: {
     messageType: WATCH_EPISODE_RESPONSE,
   },
@@ -229,7 +242,7 @@ export let LIST_WATCHED_EPISODES: RemoteCallDescriptor = {
   body: {
     messageType: LIST_WATCHED_EPISODES_REQUEST_BODY,
   },
-  authKey: "sk",
+  authKey: "a",
   response: {
     messageType: LIST_WATCHED_EPISODES_RESPONSE,
   },
@@ -242,7 +255,7 @@ export let GET_CONTINUE_EPISODE: RemoteCallDescriptor = {
   body: {
     messageType: GET_CONTINUE_EPISODE_REQUEST_BODY,
   },
-  authKey: "sk",
+  authKey: "a",
   response: {
     messageType: GET_CONTINUE_EPISODE_RESPONSE,
   },
@@ -255,7 +268,7 @@ export let GET_CONTINUE_TIME_FOR_EPISODE: RemoteCallDescriptor = {
   body: {
     messageType: GET_CONTINUE_TIME_FOR_EPISODE_REQUEST_BODY,
   },
-  authKey: "sk",
+  authKey: "a",
   response: {
     messageType: GET_CONTINUE_TIME_FOR_EPISODE_RESPONSE,
   },
@@ -268,7 +281,7 @@ export let ADD_TO_WATCH_LATER_LIST: RemoteCallDescriptor = {
   body: {
     messageType: ADD_TO_WATCH_LATER_LIST_REQUEST_BODY,
   },
-  authKey: "sk",
+  authKey: "a",
   response: {
     messageType: ADD_TO_WATCH_LATER_LIST_RESPONSE,
   },
@@ -279,11 +292,11 @@ export let DELETE_FROM_WATCH_LATER_LIST: RemoteCallDescriptor = {
   service: PLAY_ACTIVITY_WEB_SERVICE,
   path: "/DeleteFromWatchLaterList",
   body: {
-    messageType: ADD_TO_WATCH_LATER_LIST_REQUEST_BODY,
+    messageType: DELETE_FROM_WATCH_LATER_LIST_REQUEST_BODY,
   },
-  authKey: "sk",
+  authKey: "a",
   response: {
-    messageType: ADD_TO_WATCH_LATER_LIST_RESPONSE,
+    messageType: DELETE_FROM_WATCH_LATER_LIST_RESPONSE,
   },
 }
 
@@ -294,7 +307,7 @@ export let LIST_FROM_WATCH_LATER_LIST: RemoteCallDescriptor = {
   body: {
     messageType: LIST_FROM_WATCH_LATER_LIST_REQUEST_BODY,
   },
-  authKey: "sk",
+  authKey: "a",
   response: {
     messageType: LIST_FROM_WATCH_LATER_LIST_RESPONSE,
   },

@@ -22,9 +22,12 @@
 - kind: Message
   name: ListWatchedEpisodesRequestBody
   fields:
-    - name: lastWatchedTimeCursor
+    - name: limit
       type: number
       index: 1
+    - name: lastWatchedTimeCursor
+      type: number
+      index: 2
 - kind: Message
   name: ListWatchedEpisodesResponse
   fields:
@@ -33,6 +36,9 @@
       import: ./show/web/episode_watched
       isArray: true
       index: 1
+    - name: lastWatchedTimeCursor
+      type: number
+      index: 2
 - kind: Message
   name: GetContinueEpisodeRequestBody
   fields:
@@ -72,19 +78,6 @@
 - kind: Message
   name: AddToWatchLaterListResponse
 - kind: Message
-  name: ListFromWatchLaterListRequestBody
-  fields:
-    - name: lastAddedTimeCursor
-      type: number
-      index: 1
-- kind: Message
-  name: ListFromWatchLaterListResponse
-  fields:
-    - name: seasonIds
-      type: string
-      isArray: true
-      index: 1
-- kind: Message
   name: DeleteFromWatchLaterListRequestBody
   fields:
     - name: seasonId
@@ -92,12 +85,25 @@
       index: 1
 - kind: Message
   name: DeleteFromWatchLaterListResponse
+- kind: Message
+  name: ListFromWatchLaterListRequestBody
   fields:
-    - name: seasons
-      type: WatchLaterSeason
-      import: ./show/web/watch_later_season
+    - name: limit
+      type: number
+      index: 1
+    - name: addedTimeCursor
+      type: number
+      index: 2
+- kind: Message
+  name: ListFromWatchLaterListResponse
+  fields:
+    - name: seasonIds
+      type: string
       isArray: true
       index: 1
+    - name: addedTimeCursor
+      type: number
+      index: 2
 - kind: RemoteCallsGroup
   name: PlayActivityShowWebRemoteCalls
   service: PlayActivityWebService
@@ -106,37 +112,37 @@
     - name: WatchEpisode
       path: /WatchEpisode
       body: WatchEpisodeRequestBody
-      authKey: sk
+      authKey: a
       response: WatchEpisodeResponse
     - name: ListWatchedEpisodes
       path: /ListWatchedEpisodes
       body: ListWatchedEpisodesRequestBody
-      authKey: sk
+      authKey: a
       response: ListWatchedEpisodesResponse
     - name: GetContinueEpisode
       path: /GetContinueEpisode
       body: GetContinueEpisodeRequestBody
-      authKey: sk
+      authKey: a
       response: GetContinueEpisodeResponse
     - name: GetContinueTimeForEpisode
       path: /GetContinueTimeForEpisode
       body: GetContinueTimeForEpisodeRequestBody
-      authKey: sk
+      authKey: a
       response: GetContinueTimeForEpisodeResponse
     - name: AddToWatchLaterList
       path: /AddToWatchLaterList
       body: AddToWatchLaterListRequestBody
-      authKey: sk
+      authKey: a
       response: AddToWatchLaterListResponse
     - name: DeleteFromWatchLaterList
       path: /DeleteFromWatchLaterList
-      body: AddToWatchLaterListRequestBody
-      authKey: sk
-      response: AddToWatchLaterListResponse
+      body: DeleteFromWatchLaterListRequestBody
+      authKey: a
+      response: DeleteFromWatchLaterListResponse
     - name: ListFromWatchLaterList
       path: /ListFromWatchLaterList
       body: ListFromWatchLaterListRequestBody
-      authKey: sk
+      authKey: a
       response: ListFromWatchLaterListResponse
   outputClient: ./show/web/client
   outputHandler: ./show/web/handler
