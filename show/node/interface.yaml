@@ -1,0 +1,29 @@
+- kind: Message
+  name: GetContinueEpisodeRequestBody
+  fields:
+    - name: seasonId
+      type: string
+      index: 1
+    - name: watcherId
+      type: string
+      index: 2
+- kind: Message
+  name: GetContinueEpisodeResponse
+  fields:
+    - name: episodeId
+      type: string
+      index: 1
+    - name: continueTimeMs # timestamp of the video
+      type: number
+      index: 2
+- kind: RemoteCallsGroup
+  name: PlayActivityShowNodeRemoteCalls
+  service: PlayActivityNodeService
+  importService: ./service
+  calls:
+    - name: GetContinueEpisode
+      path: /GetContinueEpisode
+      body: GetContinueEpisodeRequestBody
+      response: GetContinueEpisodeResponse
+  outputClient: ./show/node/client
+  outputHandler: ./show/node/handler
