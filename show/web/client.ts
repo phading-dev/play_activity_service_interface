@@ -1,4 +1,4 @@
-import { WatchEpisodeRequestBody, WatchEpisodeResponse, WATCH_EPISODE, ListWatchedEpisodesRequestBody, ListWatchedEpisodesResponse, LIST_WATCHED_EPISODES, GetContinueEpisodeRequestBody, GetContinueEpisodeResponse, GET_CONTINUE_EPISODE, GetContinueTimeForEpisodeRequestBody, GetContinueTimeForEpisodeResponse, GET_CONTINUE_TIME_FOR_EPISODE, AddToWatchLaterListRequestBody, AddToWatchLaterListResponse, ADD_TO_WATCH_LATER_LIST, DeleteFromWatchLaterListRequestBody, DeleteFromWatchLaterListResponse, DELETE_FROM_WATCH_LATER_LIST, ListFromWatchLaterListRequestBody, ListFromWatchLaterListResponse, LIST_FROM_WATCH_LATER_LIST } from './interface';
+import { WatchEpisodeRequestBody, WatchEpisodeResponse, WATCH_EPISODE, ListWatchSessionsRequestBody, ListWatchSessionsResponse, LIST_WATCH_SESSIONS, GetLatestWatchedTimeOfEpisodeRequestBody, GetLatestWatchedTimeOfEpisodeResponse, GET_LATEST_WATCHED_TIME_OF_EPISODE, AddToWatchLaterListRequestBody, AddToWatchLaterListResponse, ADD_TO_WATCH_LATER_LIST, DeleteFromWatchLaterListRequestBody, DeleteFromWatchLaterListResponse, DELETE_FROM_WATCH_LATER_LIST, ListFromWatchLaterListRequestBody, ListFromWatchLaterListResponse, LIST_FROM_WATCH_LATER_LIST } from './interface';
 import { ClientRequestInterface } from '@selfage/service_descriptor/client_request_interface';
 
 export function newWatchEpisodeRequest(
@@ -10,29 +10,20 @@ export function newWatchEpisodeRequest(
   };
 }
 
-export function newListWatchedEpisodesRequest(
-  body: ListWatchedEpisodesRequestBody,
-): ClientRequestInterface<ListWatchedEpisodesResponse> {
+export function newListWatchSessionsRequest(
+  body: ListWatchSessionsRequestBody,
+): ClientRequestInterface<ListWatchSessionsResponse> {
   return {
-    descriptor: LIST_WATCHED_EPISODES,
+    descriptor: LIST_WATCH_SESSIONS,
     body,
   };
 }
 
-export function newGetContinueEpisodeRequest(
-  body: GetContinueEpisodeRequestBody,
-): ClientRequestInterface<GetContinueEpisodeResponse> {
+export function newGetLatestWatchedTimeOfEpisodeRequest(
+  body: GetLatestWatchedTimeOfEpisodeRequestBody,
+): ClientRequestInterface<GetLatestWatchedTimeOfEpisodeResponse> {
   return {
-    descriptor: GET_CONTINUE_EPISODE,
-    body,
-  };
-}
-
-export function newGetContinueTimeForEpisodeRequest(
-  body: GetContinueTimeForEpisodeRequestBody,
-): ClientRequestInterface<GetContinueTimeForEpisodeResponse> {
-  return {
-    descriptor: GET_CONTINUE_TIME_FOR_EPISODE,
+    descriptor: GET_LATEST_WATCHED_TIME_OF_EPISODE,
     body,
   };
 }

@@ -1,5 +1,5 @@
 import { PrimitiveType, MessageDescriptor } from '@selfage/message/descriptor';
-import { EpisodeWatched, EPISODE_WATCHED } from './episode_watched';
+import { WatchSession, WATCH_SESSION } from './watch_session';
 import { PLAY_ACTIVITY_WEB_SERVICE } from '../../service';
 import { RemoteCallDescriptor } from '@selfage/service_descriptor';
 
@@ -7,6 +7,7 @@ export interface WatchEpisodeRequestBody {
   watchSessionId?: string,
   seasonId?: string,
   episodeId?: string,
+  episodeIndex?: number,
   watchTimeMs?: number,
 }
 
@@ -25,8 +26,12 @@ export let WATCH_EPISODE_REQUEST_BODY: MessageDescriptor<WatchEpisodeRequestBody
     index: 3,
     primitiveType: PrimitiveType.STRING,
   }, {
-    name: 'watchTimeMs',
+    name: 'episodeIndex',
     index: 4,
+    primitiveType: PrimitiveType.NUMBER,
+  }, {
+    name: 'watchTimeMs',
+    index: 5,
     primitiveType: PrimitiveType.NUMBER,
   }],
 };
@@ -44,81 +49,50 @@ export let WATCH_EPISODE_RESPONSE: MessageDescriptor<WatchEpisodeResponse> = {
   }],
 };
 
-export interface ListWatchedEpisodesRequestBody {
+export interface ListWatchSessionsRequestBody {
   limit?: number,
-  lastWatchedTimeCursor?: number,
+  createdTimeCursor?: number,
 }
 
-export let LIST_WATCHED_EPISODES_REQUEST_BODY: MessageDescriptor<ListWatchedEpisodesRequestBody> = {
-  name: 'ListWatchedEpisodesRequestBody',
+export let LIST_WATCH_SESSIONS_REQUEST_BODY: MessageDescriptor<ListWatchSessionsRequestBody> = {
+  name: 'ListWatchSessionsRequestBody',
   fields: [{
     name: 'limit',
     index: 1,
     primitiveType: PrimitiveType.NUMBER,
   }, {
-    name: 'lastWatchedTimeCursor',
+    name: 'createdTimeCursor',
     index: 2,
     primitiveType: PrimitiveType.NUMBER,
   }],
 };
 
-export interface ListWatchedEpisodesResponse {
-  episodes?: Array<EpisodeWatched>,
-  lastWatchedTimeCursor?: number,
+export interface ListWatchSessionsResponse {
+  sessions?: Array<WatchSession>,
+  createdTimeCursor?: number,
 }
 
-export let LIST_WATCHED_EPISODES_RESPONSE: MessageDescriptor<ListWatchedEpisodesResponse> = {
-  name: 'ListWatchedEpisodesResponse',
+export let LIST_WATCH_SESSIONS_RESPONSE: MessageDescriptor<ListWatchSessionsResponse> = {
+  name: 'ListWatchSessionsResponse',
   fields: [{
-    name: 'episodes',
+    name: 'sessions',
     index: 1,
-    messageType: EPISODE_WATCHED,
+    messageType: WATCH_SESSION,
     isArray: true,
   }, {
-    name: 'lastWatchedTimeCursor',
+    name: 'createdTimeCursor',
     index: 2,
     primitiveType: PrimitiveType.NUMBER,
   }],
 };
 
-export interface GetContinueEpisodeRequestBody {
-  seasonId?: string,
-}
-
-export let GET_CONTINUE_EPISODE_REQUEST_BODY: MessageDescriptor<GetContinueEpisodeRequestBody> = {
-  name: 'GetContinueEpisodeRequestBody',
-  fields: [{
-    name: 'seasonId',
-    index: 1,
-    primitiveType: PrimitiveType.STRING,
-  }],
-};
-
-export interface GetContinueEpisodeResponse {
-  episodeId?: string,
-  continueTimeMs?: number,
-}
-
-export let GET_CONTINUE_EPISODE_RESPONSE: MessageDescriptor<GetContinueEpisodeResponse> = {
-  name: 'GetContinueEpisodeResponse',
-  fields: [{
-    name: 'episodeId',
-    index: 1,
-    primitiveType: PrimitiveType.STRING,
-  }, {
-    name: 'continueTimeMs',
-    index: 2,
-    primitiveType: PrimitiveType.NUMBER,
-  }],
-};
-
-export interface GetContinueTimeForEpisodeRequestBody {
+export interface GetLatestWatchedTimeOfEpisodeRequestBody {
   seasonId?: string,
   episodeId?: string,
 }
 
-export let GET_CONTINUE_TIME_FOR_EPISODE_REQUEST_BODY: MessageDescriptor<GetContinueTimeForEpisodeRequestBody> = {
-  name: 'GetContinueTimeForEpisodeRequestBody',
+export let GET_LATEST_WATCHED_TIME_OF_EPISODE_REQUEST_BODY: MessageDescriptor<GetLatestWatchedTimeOfEpisodeRequestBody> = {
+  name: 'GetLatestWatchedTimeOfEpisodeRequestBody',
   fields: [{
     name: 'seasonId',
     index: 1,
@@ -130,15 +104,20 @@ export let GET_CONTINUE_TIME_FOR_EPISODE_REQUEST_BODY: MessageDescriptor<GetCont
   }],
 };
 
-export interface GetContinueTimeForEpisodeResponse {
-  continueTimeMs?: number,
+export interface GetLatestWatchedTimeOfEpisodeResponse {
+  episodeIndex?: number,
+  watchedTimeMs?: number,
 }
 
-export let GET_CONTINUE_TIME_FOR_EPISODE_RESPONSE: MessageDescriptor<GetContinueTimeForEpisodeResponse> = {
-  name: 'GetContinueTimeForEpisodeResponse',
+export let GET_LATEST_WATCHED_TIME_OF_EPISODE_RESPONSE: MessageDescriptor<GetLatestWatchedTimeOfEpisodeResponse> = {
+  name: 'GetLatestWatchedTimeOfEpisodeResponse',
   fields: [{
-    name: 'continueTimeMs',
+    name: 'episodeIndex',
     index: 1,
+    primitiveType: PrimitiveType.NUMBER,
+  }, {
+    name: 'watchedTimeMs',
+    index: 2,
     primitiveType: PrimitiveType.NUMBER,
   }],
 };
@@ -235,42 +214,29 @@ export let WATCH_EPISODE: RemoteCallDescriptor = {
   },
 }
 
-export let LIST_WATCHED_EPISODES: RemoteCallDescriptor = {
-  name: "ListWatchedEpisodes",
+export let LIST_WATCH_SESSIONS: RemoteCallDescriptor = {
+  name: "ListWatchSessions",
   service: PLAY_ACTIVITY_WEB_SERVICE,
-  path: "/ListWatchedEpisodes",
+  path: "/ListWatchSessions",
   body: {
-    messageType: LIST_WATCHED_EPISODES_REQUEST_BODY,
+    messageType: LIST_WATCH_SESSIONS_REQUEST_BODY,
   },
   authKey: "a",
   response: {
-    messageType: LIST_WATCHED_EPISODES_RESPONSE,
+    messageType: LIST_WATCH_SESSIONS_RESPONSE,
   },
 }
 
-export let GET_CONTINUE_EPISODE: RemoteCallDescriptor = {
-  name: "GetContinueEpisode",
+export let GET_LATEST_WATCHED_TIME_OF_EPISODE: RemoteCallDescriptor = {
+  name: "GetLatestWatchedTimeOfEpisode",
   service: PLAY_ACTIVITY_WEB_SERVICE,
-  path: "/GetContinueEpisode",
+  path: "/GetLatestWatchedTimeOfEpisode",
   body: {
-    messageType: GET_CONTINUE_EPISODE_REQUEST_BODY,
+    messageType: GET_LATEST_WATCHED_TIME_OF_EPISODE_REQUEST_BODY,
   },
   authKey: "a",
   response: {
-    messageType: GET_CONTINUE_EPISODE_RESPONSE,
-  },
-}
-
-export let GET_CONTINUE_TIME_FOR_EPISODE: RemoteCallDescriptor = {
-  name: "GetContinueTimeForEpisode",
-  service: PLAY_ACTIVITY_WEB_SERVICE,
-  path: "/GetContinueTimeForEpisode",
-  body: {
-    messageType: GET_CONTINUE_TIME_FOR_EPISODE_REQUEST_BODY,
-  },
-  authKey: "a",
-  response: {
-    messageType: GET_CONTINUE_TIME_FOR_EPISODE_RESPONSE,
+    messageType: GET_LATEST_WATCHED_TIME_OF_EPISODE_RESPONSE,
   },
 }
 

@@ -1,0 +1,15 @@
+- kind: Message
+  name: WatchedSeason
+  fields:
+    - name: seasonId
+      type: string
+      index: 1
+    - name: latestEpisodeId
+      type: string
+      index: 2
+    - name: latestEpisodeIndex
+      type: number
+      index: 3
+    - name: latestWatchedTimeMs # timestamp of the video
+      type: number
+      index: 4

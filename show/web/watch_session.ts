@@ -1,14 +1,14 @@
 import { PrimitiveType, MessageDescriptor } from '@selfage/message/descriptor';
 
-export interface EpisodeWatched {
+export interface WatchSession {
   seasonId?: string,
   episodeId?: string,
-  continueTimeMs?: number,
-  lastWatchedTimeMs?: number,
+  latestWatchedTimeMs?: number,
+  createdTimeMs?: number,
 }
 
-export let EPISODE_WATCHED: MessageDescriptor<EpisodeWatched> = {
-  name: 'EpisodeWatched',
+export let WATCH_SESSION: MessageDescriptor<WatchSession> = {
+  name: 'WatchSession',
   fields: [{
     name: 'seasonId',
     index: 1,
@@ -18,11 +18,11 @@ export let EPISODE_WATCHED: MessageDescriptor<EpisodeWatched> = {
     index: 2,
     primitiveType: PrimitiveType.STRING,
   }, {
-    name: 'continueTimeMs',
+    name: 'latestWatchedTimeMs',
     index: 3,
     primitiveType: PrimitiveType.NUMBER,
   }, {
-    name: 'lastWatchedTimeMs',
+    name: 'createdTimeMs',
     index: 4,
     primitiveType: PrimitiveType.NUMBER,
   }],

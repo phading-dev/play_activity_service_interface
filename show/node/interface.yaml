@@ -1,5 +1,22 @@
 - kind: Message
-  name: GetContinueEpisodeRequestBody
+  name: ListRecentlyWatchedSeasonsRequestBody
+  fields:
+    - name: watcherId
+      type: string
+      index: 1
+    - name: limit
+      type: number
+      index: 2
+- kind: Message
+  name: ListRecentlyWatchedSeasonsResponse
+  fields:
+    - name: seasons
+      type: WatchedSeason
+      import: ./show/node/watched_season
+      isArray: true
+      index: 1
+- kind: Message
+  name: GetLatestWatchedEpisodeRequestBody
   fields:
     - name: seasonId
       type: string
@@ -8,22 +25,29 @@
       type: string
       index: 2
 - kind: Message
-  name: GetContinueEpisodeResponse
+  name: GetLatestWatchedEpisodeResponse
   fields:
     - name: episodeId
       type: string
       index: 1
-    - name: continueTimeMs # timestamp of the video
+    - name: episodeIndex
       type: number
       index: 2
+    - name: watchedTimeMs # timestamp of the video
+      type: number
+      index: 3
 - kind: RemoteCallsGroup
   name: PlayActivityShowNodeRemoteCalls
   service: PlayActivityNodeService
   importService: ./service
   calls:
-    - name: GetContinueEpisode
-      path: /GetContinueEpisode
-      body: GetContinueEpisodeRequestBody
-      response: GetContinueEpisodeResponse
+    - name: ListRecentlyWatchedSeasons
+      path: /ListRecentlyWatchedSeasons
+      body: ListRecentlyWatchedSeasonsRequestBody
+      response: ListRecentlyWatchedSeasonsResponse
+    - name: GetLatestWatchedEpisode
+      path: /GetLatestWatchedEpisode
+      body: GetLatestWatchedEpisodeRequestBody
+      response: GetLatestWatchedEpisodeResponse
   outputClient: ./show/node/client
   outputHandler: ./show/node/handler

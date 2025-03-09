@@ -10,9 +10,12 @@
     - name: episodeId
       type: string
       index: 3
-    - name: watchTimeMs # timestamp of the video
+    - name: episodeIndex
       type: number
       index: 4
+    - name: watchTimeMs # timestamp of the video
+      type: number
+      index: 5
 - kind: Message
   name: WatchEpisodeResponse
   fields:
@@ -20,42 +23,27 @@
       type: string
       index: 1
 - kind: Message
-  name: ListWatchedEpisodesRequestBody
+  name: ListWatchSessionsRequestBody
   fields:
     - name: limit
       type: number
       index: 1
-    - name: lastWatchedTimeCursor
+    - name: createdTimeCursor
       type: number
       index: 2
 - kind: Message
-  name: ListWatchedEpisodesResponse
+  name: ListWatchSessionsResponse
   fields:
-    - name: episodes
-      type: EpisodeWatched
-      import: ./show/web/episode_watched
+    - name: sessions
+      type: WatchSession
+      import: ./show/web/watch_session
       isArray: true
       index: 1
-    - name: lastWatchedTimeCursor
+    - name: createdTimeCursor
       type: number
       index: 2
 - kind: Message
-  name: GetContinueEpisodeRequestBody
-  fields:
-    - name: seasonId
-      type: string
-      index: 1
-- kind: Message
-  name: GetContinueEpisodeResponse
-  fields:
-    - name: episodeId
-      type: string
-      index: 1
-    - name: continueTimeMs # timestamp of the video
-      type: number
-      index: 2
-- kind: Message
-  name: GetContinueTimeForEpisodeRequestBody
+  name: GetLatestWatchedTimeOfEpisodeRequestBody
   fields:
     - name: seasonId
       type: string
@@ -64,11 +52,14 @@
       type: string
       index: 2
 - kind: Message
-  name: GetContinueTimeForEpisodeResponse
+  name: GetLatestWatchedTimeOfEpisodeResponse
   fields:
-    - name: continueTimeMs # timestamp of the video
+    - name: episodeIndex
       type: number
       index: 1
+    - name: watchedTimeMs # timestamp of the video
+      type: number
+      index: 2
 - kind: Message
   name: AddToWatchLaterListRequestBody
   fields:
@@ -114,21 +105,16 @@
       body: WatchEpisodeRequestBody
       authKey: a
       response: WatchEpisodeResponse
-    - name: ListWatchedEpisodes
-      path: /ListWatchedEpisodes
-      body: ListWatchedEpisodesRequestBody
+    - name: ListWatchSessions
+      path: /ListWatchSessions
+      body: ListWatchSessionsRequestBody
       authKey: a
-      response: ListWatchedEpisodesResponse
-    - name: GetContinueEpisode
-      path: /GetContinueEpisode
-      body: GetContinueEpisodeRequestBody
+      response: ListWatchSessionsResponse
+    - name: GetLatestWatchedTimeOfEpisode
+      path: /GetLatestWatchedTimeOfEpisode
+      body: GetLatestWatchedTimeOfEpisodeRequestBody
       authKey: a
-      response: GetContinueEpisodeResponse
-    - name: GetContinueTimeForEpisode
-      path: /GetContinueTimeForEpisode
-      body: GetContinueTimeForEpisodeRequestBody
-      authKey: a
-      response: GetContinueTimeForEpisodeResponse
+      response: GetLatestWatchedTimeOfEpisodeResponse
     - name: AddToWatchLaterList
       path: /AddToWatchLaterList
       body: AddToWatchLaterListRequestBody
