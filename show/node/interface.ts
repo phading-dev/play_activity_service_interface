@@ -76,6 +76,47 @@ export let GET_LATEST_WATCHED_EPISODE_RESPONSE: MessageDescriptor<GetLatestWatch
   }],
 };
 
+export interface GetLatestWatchedTimeOfEpisodeRequestBody {
+  watcherId?: string,
+  seasonId?: string,
+  episodeId?: string,
+}
+
+export let GET_LATEST_WATCHED_TIME_OF_EPISODE_REQUEST_BODY: MessageDescriptor<GetLatestWatchedTimeOfEpisodeRequestBody> = {
+  name: 'GetLatestWatchedTimeOfEpisodeRequestBody',
+  fields: [{
+    name: 'watcherId',
+    index: 1,
+    primitiveType: PrimitiveType.STRING,
+  }, {
+    name: 'seasonId',
+    index: 2,
+    primitiveType: PrimitiveType.STRING,
+  }, {
+    name: 'episodeId',
+    index: 3,
+    primitiveType: PrimitiveType.STRING,
+  }],
+};
+
+export interface GetLatestWatchedTimeOfEpisodeResponse {
+  episodeIndex?: number,
+  watchedTimeMs?: number,
+}
+
+export let GET_LATEST_WATCHED_TIME_OF_EPISODE_RESPONSE: MessageDescriptor<GetLatestWatchedTimeOfEpisodeResponse> = {
+  name: 'GetLatestWatchedTimeOfEpisodeResponse',
+  fields: [{
+    name: 'episodeIndex',
+    index: 1,
+    primitiveType: PrimitiveType.NUMBER,
+  }, {
+    name: 'watchedTimeMs',
+    index: 2,
+    primitiveType: PrimitiveType.NUMBER,
+  }],
+};
+
 export let LIST_RECENTLY_WATCHED_SEASONS: RemoteCallDescriptor = {
   name: "ListRecentlyWatchedSeasons",
   service: PLAY_ACTIVITY_NODE_SERVICE,
@@ -97,5 +138,17 @@ export let GET_LATEST_WATCHED_EPISODE: RemoteCallDescriptor = {
   },
   response: {
     messageType: GET_LATEST_WATCHED_EPISODE_RESPONSE,
+  },
+}
+
+export let GET_LATEST_WATCHED_TIME_OF_EPISODE: RemoteCallDescriptor = {
+  name: "GetLatestWatchedTimeOfEpisode",
+  service: PLAY_ACTIVITY_NODE_SERVICE,
+  path: "/GetLatestWatchedTimeOfEpisode",
+  body: {
+    messageType: GET_LATEST_WATCHED_TIME_OF_EPISODE_REQUEST_BODY,
+  },
+  response: {
+    messageType: GET_LATEST_WATCHED_TIME_OF_EPISODE_RESPONSE,
   },
 }

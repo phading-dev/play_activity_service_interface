@@ -86,42 +86,6 @@ export let LIST_WATCH_SESSIONS_RESPONSE: MessageDescriptor<ListWatchSessionsResp
   }],
 };
 
-export interface GetLatestWatchedTimeOfEpisodeRequestBody {
-  seasonId?: string,
-  episodeId?: string,
-}
-
-export let GET_LATEST_WATCHED_TIME_OF_EPISODE_REQUEST_BODY: MessageDescriptor<GetLatestWatchedTimeOfEpisodeRequestBody> = {
-  name: 'GetLatestWatchedTimeOfEpisodeRequestBody',
-  fields: [{
-    name: 'seasonId',
-    index: 1,
-    primitiveType: PrimitiveType.STRING,
-  }, {
-    name: 'episodeId',
-    index: 2,
-    primitiveType: PrimitiveType.STRING,
-  }],
-};
-
-export interface GetLatestWatchedTimeOfEpisodeResponse {
-  episodeIndex?: number,
-  watchedTimeMs?: number,
-}
-
-export let GET_LATEST_WATCHED_TIME_OF_EPISODE_RESPONSE: MessageDescriptor<GetLatestWatchedTimeOfEpisodeResponse> = {
-  name: 'GetLatestWatchedTimeOfEpisodeResponse',
-  fields: [{
-    name: 'episodeIndex',
-    index: 1,
-    primitiveType: PrimitiveType.NUMBER,
-  }, {
-    name: 'watchedTimeMs',
-    index: 2,
-    primitiveType: PrimitiveType.NUMBER,
-  }],
-};
-
 export interface AddToWatchLaterListRequestBody {
   seasonId?: string,
 }
@@ -224,19 +188,6 @@ export let LIST_WATCH_SESSIONS: RemoteCallDescriptor = {
   authKey: "a",
   response: {
     messageType: LIST_WATCH_SESSIONS_RESPONSE,
-  },
-}
-
-export let GET_LATEST_WATCHED_TIME_OF_EPISODE: RemoteCallDescriptor = {
-  name: "GetLatestWatchedTimeOfEpisode",
-  service: PLAY_ACTIVITY_WEB_SERVICE,
-  path: "/GetLatestWatchedTimeOfEpisode",
-  body: {
-    messageType: GET_LATEST_WATCHED_TIME_OF_EPISODE_REQUEST_BODY,
-  },
-  authKey: "a",
-  response: {
-    messageType: GET_LATEST_WATCHED_TIME_OF_EPISODE_RESPONSE,
   },
 }
 

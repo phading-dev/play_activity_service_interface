@@ -43,24 +43,6 @@
       type: number
       index: 2
 - kind: Message
-  name: GetLatestWatchedTimeOfEpisodeRequestBody
-  fields:
-    - name: seasonId
-      type: string
-      index: 1
-    - name: episodeId
-      type: string
-      index: 2
-- kind: Message
-  name: GetLatestWatchedTimeOfEpisodeResponse
-  fields:
-    - name: episodeIndex
-      type: number
-      index: 1
-    - name: watchedTimeMs # timestamp of the video
-      type: number
-      index: 2
-- kind: Message
   name: AddToWatchLaterListRequestBody
   fields:
     - name: seasonId
@@ -110,11 +92,6 @@
       body: ListWatchSessionsRequestBody
       authKey: a
       response: ListWatchSessionsResponse
-    - name: GetLatestWatchedTimeOfEpisode
-      path: /GetLatestWatchedTimeOfEpisode
-      body: GetLatestWatchedTimeOfEpisodeRequestBody
-      authKey: a
-      response: GetLatestWatchedTimeOfEpisodeResponse
     - name: AddToWatchLaterList
       path: /AddToWatchLaterList
       body: AddToWatchLaterListRequestBody

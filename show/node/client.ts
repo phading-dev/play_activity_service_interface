@@ -1,4 +1,4 @@
-import { ListRecentlyWatchedSeasonsRequestBody, ListRecentlyWatchedSeasonsResponse, LIST_RECENTLY_WATCHED_SEASONS, GetLatestWatchedEpisodeRequestBody, GetLatestWatchedEpisodeResponse, GET_LATEST_WATCHED_EPISODE } from './interface';
+import { ListRecentlyWatchedSeasonsRequestBody, ListRecentlyWatchedSeasonsResponse, LIST_RECENTLY_WATCHED_SEASONS, GetLatestWatchedEpisodeRequestBody, GetLatestWatchedEpisodeResponse, GET_LATEST_WATCHED_EPISODE, GetLatestWatchedTimeOfEpisodeRequestBody, GetLatestWatchedTimeOfEpisodeResponse, GET_LATEST_WATCHED_TIME_OF_EPISODE } from './interface';
 import { ClientRequestInterface } from '@selfage/service_descriptor/client_request_interface';
 
 export function newListRecentlyWatchedSeasonsRequest(
@@ -15,6 +15,15 @@ export function newGetLatestWatchedEpisodeRequest(
 ): ClientRequestInterface<GetLatestWatchedEpisodeResponse> {
   return {
     descriptor: GET_LATEST_WATCHED_EPISODE,
+    body,
+  };
+}
+
+export function newGetLatestWatchedTimeOfEpisodeRequest(
+  body: GetLatestWatchedTimeOfEpisodeRequestBody,
+): ClientRequestInterface<GetLatestWatchedTimeOfEpisodeResponse> {
+  return {
+    descriptor: GET_LATEST_WATCHED_TIME_OF_EPISODE,
     body,
   };
 }
