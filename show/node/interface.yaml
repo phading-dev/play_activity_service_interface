@@ -36,27 +36,6 @@
     - name: watchedTimeMs # timestamp of the video
       type: number
       index: 3
-- kind: Message
-  name: GetLatestWatchedTimeOfEpisodeRequestBody
-  fields:
-    - name: watcherId
-      type: string
-      index: 1
-    - name: seasonId
-      type: string
-      index: 2
-    - name: episodeId
-      type: string
-      index: 3
-- kind: Message
-  name: GetLatestWatchedTimeOfEpisodeResponse
-  fields:
-    - name: episodeIndex
-      type: number
-      index: 1
-    - name: watchedTimeMs # timestamp of the video
-      type: number
-      index: 2
 - kind: RemoteCallsGroup
   name: PlayActivityShowNodeRemoteCalls
   service: PlayActivityNodeService
@@ -70,9 +49,5 @@
       path: /GetLatestWatchedEpisode
       body: GetLatestWatchedEpisodeRequestBody
       response: GetLatestWatchedEpisodeResponse
-    - name: GetLatestWatchedTimeOfEpisode
-      path: /GetLatestWatchedTimeOfEpisode
-      body: GetLatestWatchedTimeOfEpisodeRequestBody
-      response: GetLatestWatchedTimeOfEpisodeResponse
   outputClient: ./show/node/client
   outputHandler: ./show/node/handler
