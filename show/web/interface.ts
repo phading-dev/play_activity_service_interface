@@ -201,6 +201,32 @@ export let LIST_FROM_WATCH_LATER_LIST_RESPONSE: MessageDescriptor<ListFromWatchL
   }],
 };
 
+export interface CheckInWatchLaterListRequestBody {
+  seasonId?: string,
+}
+
+export let CHECK_IN_WATCH_LATER_LIST_REQUEST_BODY: MessageDescriptor<CheckInWatchLaterListRequestBody> = {
+  name: 'CheckInWatchLaterListRequestBody',
+  fields: [{
+    name: 'seasonId',
+    index: 1,
+    primitiveType: PrimitiveType.STRING,
+  }],
+};
+
+export interface CheckInWatchLaterListResponse {
+  isIn?: boolean,
+}
+
+export let CHECK_IN_WATCH_LATER_LIST_RESPONSE: MessageDescriptor<CheckInWatchLaterListResponse> = {
+  name: 'CheckInWatchLaterListResponse',
+  fields: [{
+    name: 'isIn',
+    index: 1,
+    primitiveType: PrimitiveType.BOOLEAN,
+  }],
+};
+
 export let WATCH_EPISODE: RemoteCallDescriptor = {
   name: "WatchEpisode",
   service: PLAY_ACTIVITY_WEB_SERVICE,
@@ -276,5 +302,18 @@ export let LIST_FROM_WATCH_LATER_LIST: RemoteCallDescriptor = {
   authKey: "a",
   response: {
     messageType: LIST_FROM_WATCH_LATER_LIST_RESPONSE,
+  },
+}
+
+export let CHECK_IN_WATCH_LATER_LIST: RemoteCallDescriptor = {
+  name: "CheckInWatchLaterList",
+  service: PLAY_ACTIVITY_WEB_SERVICE,
+  path: "/CheckInWatchLaterList",
+  body: {
+    messageType: CHECK_IN_WATCH_LATER_LIST_REQUEST_BODY,
+  },
+  authKey: "a",
+  response: {
+    messageType: CHECK_IN_WATCH_LATER_LIST_RESPONSE,
   },
 }

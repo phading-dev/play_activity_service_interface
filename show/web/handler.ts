@@ -1,4 +1,4 @@
-import { WatchEpisodeRequestBody, WATCH_EPISODE, WatchEpisodeResponse, ListWatchSessionsRequestBody, LIST_WATCH_SESSIONS, ListWatchSessionsResponse, GetLatestWatchedTimeOfEpisodeRequestBody, GET_LATEST_WATCHED_TIME_OF_EPISODE, GetLatestWatchedTimeOfEpisodeResponse, AddToWatchLaterListRequestBody, ADD_TO_WATCH_LATER_LIST, AddToWatchLaterListResponse, DeleteFromWatchLaterListRequestBody, DELETE_FROM_WATCH_LATER_LIST, DeleteFromWatchLaterListResponse, ListFromWatchLaterListRequestBody, LIST_FROM_WATCH_LATER_LIST, ListFromWatchLaterListResponse } from './interface';
+import { WatchEpisodeRequestBody, WATCH_EPISODE, WatchEpisodeResponse, ListWatchSessionsRequestBody, LIST_WATCH_SESSIONS, ListWatchSessionsResponse, GetLatestWatchedTimeOfEpisodeRequestBody, GET_LATEST_WATCHED_TIME_OF_EPISODE, GetLatestWatchedTimeOfEpisodeResponse, AddToWatchLaterListRequestBody, ADD_TO_WATCH_LATER_LIST, AddToWatchLaterListResponse, DeleteFromWatchLaterListRequestBody, DELETE_FROM_WATCH_LATER_LIST, DeleteFromWatchLaterListResponse, ListFromWatchLaterListRequestBody, LIST_FROM_WATCH_LATER_LIST, ListFromWatchLaterListResponse, CheckInWatchLaterListRequestBody, CHECK_IN_WATCH_LATER_LIST, CheckInWatchLaterListResponse } from './interface';
 import { RemoteCallHandlerInterface } from '@selfage/service_descriptor/remote_call_handler_interface';
 
 export abstract class WatchEpisodeHandlerInterface implements RemoteCallHandlerInterface {
@@ -53,4 +53,13 @@ export abstract class ListFromWatchLaterListHandlerInterface implements RemoteCa
     body: ListFromWatchLaterListRequestBody,
     authStr: string,
   ): Promise<ListFromWatchLaterListResponse>;
+}
+
+export abstract class CheckInWatchLaterListHandlerInterface implements RemoteCallHandlerInterface {
+  public descriptor = CHECK_IN_WATCH_LATER_LIST;
+  public abstract handle(
+    loggingPrefix: string,
+    body: CheckInWatchLaterListRequestBody,
+    authStr: string,
+  ): Promise<CheckInWatchLaterListResponse>;
 }

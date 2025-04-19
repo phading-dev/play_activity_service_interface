@@ -96,6 +96,18 @@
     - name: addedTimeCursor
       type: number
       index: 2
+- kind: Message
+  name: CheckInWatchLaterListRequestBody
+  fields:
+    - name: seasonId
+      type: string
+      index: 1
+- kind: Message
+  name: CheckInWatchLaterListResponse
+  fields:
+    - name: isIn
+      type: boolean
+      index: 1
 - kind: RemoteCallsGroup
   name: PlayActivityShowWebRemoteCalls
   service: PlayActivityWebService
@@ -131,5 +143,10 @@
       body: ListFromWatchLaterListRequestBody
       authKey: a
       response: ListFromWatchLaterListResponse
+    - name: CheckInWatchLaterList
+      path: /CheckInWatchLaterList
+      body: CheckInWatchLaterListRequestBody
+      authKey: a
+      response: CheckInWatchLaterListResponse
   outputClient: ./show/web/client
   outputHandler: ./show/web/handler
