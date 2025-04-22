@@ -7,7 +7,6 @@ export interface WatchEpisodeRequestBody {
   watchSessionId?: string,
   seasonId?: string,
   episodeId?: string,
-  episodeIndex?: number,
   watchTimeMs?: number,
 }
 
@@ -26,12 +25,8 @@ export let WATCH_EPISODE_REQUEST_BODY: MessageDescriptor<WatchEpisodeRequestBody
     index: 3,
     primitiveType: PrimitiveType.STRING,
   }, {
-    name: 'episodeIndex',
-    index: 4,
-    primitiveType: PrimitiveType.NUMBER,
-  }, {
     name: 'watchTimeMs',
-    index: 5,
+    index: 4,
     primitiveType: PrimitiveType.NUMBER,
   }],
 };
@@ -105,19 +100,14 @@ export let GET_LATEST_WATCHED_TIME_OF_EPISODE_REQUEST_BODY: MessageDescriptor<Ge
 };
 
 export interface GetLatestWatchedTimeOfEpisodeResponse {
-  episodeIndex?: number,
   watchedTimeMs?: number,
 }
 
 export let GET_LATEST_WATCHED_TIME_OF_EPISODE_RESPONSE: MessageDescriptor<GetLatestWatchedTimeOfEpisodeResponse> = {
   name: 'GetLatestWatchedTimeOfEpisodeResponse',
   fields: [{
-    name: 'episodeIndex',
-    index: 1,
-    primitiveType: PrimitiveType.NUMBER,
-  }, {
     name: 'watchedTimeMs',
-    index: 2,
+    index: 1,
     primitiveType: PrimitiveType.NUMBER,
   }],
 };

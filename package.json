@@ -1,6 +1,6 @@
 {
   "name": "@phading/play_activity_service_interface",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "The interface of PlayActivityService.",
   "repository": {
     "type": "git",

@@ -30,12 +30,9 @@
     - name: episodeId
       type: string
       index: 1
-    - name: episodeIndex
-      type: number
-      index: 2
     - name: watchedTimeMs # timestamp of the video
       type: number
-      index: 3
+      index: 2
 - kind: RemoteCallsGroup
   name: PlayActivityShowNodeRemoteCalls
   service: PlayActivityNodeService
