@@ -7,7 +7,7 @@ export interface WatchEpisodeRequestBody {
   watchSessionId?: string,
   seasonId?: string,
   episodeId?: string,
-  watchTimeMs?: number,
+  watchedVideoTimeMs?: number,
 }
 
 export let WATCH_EPISODE_REQUEST_BODY: MessageDescriptor<WatchEpisodeRequestBody> = {
@@ -25,7 +25,7 @@ export let WATCH_EPISODE_REQUEST_BODY: MessageDescriptor<WatchEpisodeRequestBody
     index: 3,
     primitiveType: PrimitiveType.STRING,
   }, {
-    name: 'watchTimeMs',
+    name: 'watchedVideoTimeMs',
     index: 4,
     primitiveType: PrimitiveType.NUMBER,
   }],
@@ -81,13 +81,13 @@ export let LIST_WATCH_SESSIONS_RESPONSE: MessageDescriptor<ListWatchSessionsResp
   }],
 };
 
-export interface GetLatestWatchedTimeOfEpisodeRequestBody {
+export interface GetLatestWatchedVideoTimeOfEpisodeRequestBody {
   seasonId?: string,
   episodeId?: string,
 }
 
-export let GET_LATEST_WATCHED_TIME_OF_EPISODE_REQUEST_BODY: MessageDescriptor<GetLatestWatchedTimeOfEpisodeRequestBody> = {
-  name: 'GetLatestWatchedTimeOfEpisodeRequestBody',
+export let GET_LATEST_WATCHED_VIDEO_TIME_OF_EPISODE_REQUEST_BODY: MessageDescriptor<GetLatestWatchedVideoTimeOfEpisodeRequestBody> = {
+  name: 'GetLatestWatchedVideoTimeOfEpisodeRequestBody',
   fields: [{
     name: 'seasonId',
     index: 1,
@@ -99,14 +99,14 @@ export let GET_LATEST_WATCHED_TIME_OF_EPISODE_REQUEST_BODY: MessageDescriptor<Ge
   }],
 };
 
-export interface GetLatestWatchedTimeOfEpisodeResponse {
-  watchedTimeMs?: number,
+export interface GetLatestWatchedVideoTimeOfEpisodeResponse {
+  watchedVideoTimeMs?: number,
 }
 
-export let GET_LATEST_WATCHED_TIME_OF_EPISODE_RESPONSE: MessageDescriptor<GetLatestWatchedTimeOfEpisodeResponse> = {
-  name: 'GetLatestWatchedTimeOfEpisodeResponse',
+export let GET_LATEST_WATCHED_VIDEO_TIME_OF_EPISODE_RESPONSE: MessageDescriptor<GetLatestWatchedVideoTimeOfEpisodeResponse> = {
+  name: 'GetLatestWatchedVideoTimeOfEpisodeResponse',
   fields: [{
-    name: 'watchedTimeMs',
+    name: 'watchedVideoTimeMs',
     index: 1,
     primitiveType: PrimitiveType.NUMBER,
   }],
@@ -243,16 +243,16 @@ export let LIST_WATCH_SESSIONS: RemoteCallDescriptor = {
   },
 }
 
-export let GET_LATEST_WATCHED_TIME_OF_EPISODE: RemoteCallDescriptor = {
-  name: "GetLatestWatchedTimeOfEpisode",
+export let GET_LATEST_WATCHED_VIDEO_TIME_OF_EPISODE: RemoteCallDescriptor = {
+  name: "GetLatestWatchedVideoTimeOfEpisode",
   service: PLAY_ACTIVITY_WEB_SERVICE,
-  path: "/GetLatestWatchedTimeOfEpisode",
+  path: "/GetLatestWatchedVideoTimeOfEpisode",
   body: {
-    messageType: GET_LATEST_WATCHED_TIME_OF_EPISODE_REQUEST_BODY,
+    messageType: GET_LATEST_WATCHED_VIDEO_TIME_OF_EPISODE_REQUEST_BODY,
   },
   authKey: "a",
   response: {
-    messageType: GET_LATEST_WATCHED_TIME_OF_EPISODE_RESPONSE,
+    messageType: GET_LATEST_WATCHED_VIDEO_TIME_OF_EPISODE_RESPONSE,
   },
 }
 

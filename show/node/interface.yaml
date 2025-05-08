@@ -30,7 +30,7 @@
     - name: episodeId
       type: string
       index: 1
-    - name: watchedTimeMs # timestamp of the video
+    - name: watchedVideoTimeMs
       type: number
       index: 2
 - kind: RemoteCallsGroup

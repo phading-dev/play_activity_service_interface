@@ -7,6 +7,6 @@
     - name: latestEpisodeId
       type: string
       index: 2
-    - name: latestWatchedTimeMs # timestamp of the video
+    - name: latestWatchedVideoTimeMs
       type: number
       index: 3

@@ -1,4 +1,4 @@
-import { WatchEpisodeRequestBody, WatchEpisodeResponse, WATCH_EPISODE, ListWatchSessionsRequestBody, ListWatchSessionsResponse, LIST_WATCH_SESSIONS, GetLatestWatchedTimeOfEpisodeRequestBody, GetLatestWatchedTimeOfEpisodeResponse, GET_LATEST_WATCHED_TIME_OF_EPISODE, AddToWatchLaterListRequestBody, AddToWatchLaterListResponse, ADD_TO_WATCH_LATER_LIST, DeleteFromWatchLaterListRequestBody, DeleteFromWatchLaterListResponse, DELETE_FROM_WATCH_LATER_LIST, ListFromWatchLaterListRequestBody, ListFromWatchLaterListResponse, LIST_FROM_WATCH_LATER_LIST, CheckInWatchLaterListRequestBody, CheckInWatchLaterListResponse, CHECK_IN_WATCH_LATER_LIST } from './interface';
+import { WatchEpisodeRequestBody, WatchEpisodeResponse, WATCH_EPISODE, ListWatchSessionsRequestBody, ListWatchSessionsResponse, LIST_WATCH_SESSIONS, GetLatestWatchedVideoTimeOfEpisodeRequestBody, GetLatestWatchedVideoTimeOfEpisodeResponse, GET_LATEST_WATCHED_VIDEO_TIME_OF_EPISODE, AddToWatchLaterListRequestBody, AddToWatchLaterListResponse, ADD_TO_WATCH_LATER_LIST, DeleteFromWatchLaterListRequestBody, DeleteFromWatchLaterListResponse, DELETE_FROM_WATCH_LATER_LIST, ListFromWatchLaterListRequestBody, ListFromWatchLaterListResponse, LIST_FROM_WATCH_LATER_LIST, CheckInWatchLaterListRequestBody, CheckInWatchLaterListResponse, CHECK_IN_WATCH_LATER_LIST } from './interface';
 import { ClientRequestInterface } from '@selfage/service_descriptor/client_request_interface';
 
 export function newWatchEpisodeRequest(
@@ -19,11 +19,11 @@ export function newListWatchSessionsRequest(
   };
 }
 
-export function newGetLatestWatchedTimeOfEpisodeRequest(
-  body: GetLatestWatchedTimeOfEpisodeRequestBody,
-): ClientRequestInterface<GetLatestWatchedTimeOfEpisodeResponse> {
+export function newGetLatestWatchedVideoTimeOfEpisodeRequest(
+  body: GetLatestWatchedVideoTimeOfEpisodeRequestBody,
+): ClientRequestInterface<GetLatestWatchedVideoTimeOfEpisodeResponse> {
   return {
-    descriptor: GET_LATEST_WATCHED_TIME_OF_EPISODE,
+    descriptor: GET_LATEST_WATCHED_VIDEO_TIME_OF_EPISODE,
     body,
   };
 }

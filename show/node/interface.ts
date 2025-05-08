@@ -55,7 +55,7 @@ export let GET_LATEST_WATCHED_EPISODE_REQUEST_BODY: MessageDescriptor<GetLatestW
 
 export interface GetLatestWatchedEpisodeResponse {
   episodeId?: string,
-  watchedTimeMs?: number,
+  watchedVideoTimeMs?: number,
 }
 
 export let GET_LATEST_WATCHED_EPISODE_RESPONSE: MessageDescriptor<GetLatestWatchedEpisodeResponse> = {
@@ -65,7 +65,7 @@ export let GET_LATEST_WATCHED_EPISODE_RESPONSE: MessageDescriptor<GetLatestWatch
     index: 1,
     primitiveType: PrimitiveType.STRING,
   }, {
-    name: 'watchedTimeMs',
+    name: 'watchedVideoTimeMs',
     index: 2,
     primitiveType: PrimitiveType.NUMBER,
   }],
