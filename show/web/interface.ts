@@ -220,7 +220,7 @@ export let CHECK_IN_WATCH_LATER_LIST_RESPONSE: MessageDescriptor<CheckInWatchLat
 export let WATCH_EPISODE: RemoteCallDescriptor = {
   name: "WatchEpisode",
   service: PLAY_ACTIVITY_WEB_SERVICE,
-  path: "/WatchEpisode",
+  path: "/s/WatchEpisode",
   body: {
     messageType: WATCH_EPISODE_REQUEST_BODY,
   },
@@ -233,7 +233,7 @@ export let WATCH_EPISODE: RemoteCallDescriptor = {
 export let LIST_WATCH_SESSIONS: RemoteCallDescriptor = {
   name: "ListWatchSessions",
   service: PLAY_ACTIVITY_WEB_SERVICE,
-  path: "/ListWatchSessions",
+  path: "/s/ListWatchSessions",
   body: {
     messageType: LIST_WATCH_SESSIONS_REQUEST_BODY,
   },
@@ -246,7 +246,7 @@ export let LIST_WATCH_SESSIONS: RemoteCallDescriptor = {
 export let GET_LATEST_WATCHED_VIDEO_TIME_OF_EPISODE: RemoteCallDescriptor = {
   name: "GetLatestWatchedVideoTimeOfEpisode",
   service: PLAY_ACTIVITY_WEB_SERVICE,
-  path: "/GetLatestWatchedVideoTimeOfEpisode",
+  path: "/s/GetLatestWatchedVideoTimeOfEpisode",
   body: {
     messageType: GET_LATEST_WATCHED_VIDEO_TIME_OF_EPISODE_REQUEST_BODY,
   },
@@ -259,7 +259,7 @@ export let GET_LATEST_WATCHED_VIDEO_TIME_OF_EPISODE: RemoteCallDescriptor = {
 export let ADD_TO_WATCH_LATER_LIST: RemoteCallDescriptor = {
   name: "AddToWatchLaterList",
   service: PLAY_ACTIVITY_WEB_SERVICE,
-  path: "/AddToWatchLaterList",
+  path: "/s/AddToWatchLaterList",
   body: {
     messageType: ADD_TO_WATCH_LATER_LIST_REQUEST_BODY,
   },
@@ -272,7 +272,7 @@ export let ADD_TO_WATCH_LATER_LIST: RemoteCallDescriptor = {
 export let DELETE_FROM_WATCH_LATER_LIST: RemoteCallDescriptor = {
   name: "DeleteFromWatchLaterList",
   service: PLAY_ACTIVITY_WEB_SERVICE,
-  path: "/DeleteFromWatchLaterList",
+  path: "/s/DeleteFromWatchLaterList",
   body: {
     messageType: DELETE_FROM_WATCH_LATER_LIST_REQUEST_BODY,
   },
@@ -285,7 +285,7 @@ export let DELETE_FROM_WATCH_LATER_LIST: RemoteCallDescriptor = {
 export let LIST_FROM_WATCH_LATER_LIST: RemoteCallDescriptor = {
   name: "ListFromWatchLaterList",
   service: PLAY_ACTIVITY_WEB_SERVICE,
-  path: "/ListFromWatchLaterList",
+  path: "/s/ListFromWatchLaterList",
   body: {
     messageType: LIST_FROM_WATCH_LATER_LIST_REQUEST_BODY,
   },
@@ -298,7 +298,7 @@ export let LIST_FROM_WATCH_LATER_LIST: RemoteCallDescriptor = {
 export let CHECK_IN_WATCH_LATER_LIST: RemoteCallDescriptor = {
   name: "CheckInWatchLaterList",
   service: PLAY_ACTIVITY_WEB_SERVICE,
-  path: "/CheckInWatchLaterList",
+  path: "/s/CheckInWatchLaterList",
   body: {
     messageType: CHECK_IN_WATCH_LATER_LIST_REQUEST_BODY,
   },

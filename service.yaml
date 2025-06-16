@@ -1,6 +1,6 @@
 - kind: Service
   name: PlayActivityWebService
-  path: /a/w
+  path: /aw
 - kind: Service
   name: PlayActivityNodeService
-  path: /a/n
+  path: /an

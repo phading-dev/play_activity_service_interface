@@ -105,6 +105,7 @@
   name: PlayActivityShowWebRemoteCalls
   service: PlayActivityWebService
   importService: ./service
+  path: /s
   calls:
     - name: WatchEpisode
       path: /WatchEpisode

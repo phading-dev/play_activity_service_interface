@@ -74,7 +74,7 @@ export let GET_LATEST_WATCHED_EPISODE_RESPONSE: MessageDescriptor<GetLatestWatch
 export let LIST_RECENTLY_WATCHED_SEASONS: RemoteCallDescriptor = {
   name: "ListRecentlyWatchedSeasons",
   service: PLAY_ACTIVITY_NODE_SERVICE,
-  path: "/ListRecentlyWatchedSeasons",
+  path: "/s/ListRecentlyWatchedSeasons",
   body: {
     messageType: LIST_RECENTLY_WATCHED_SEASONS_REQUEST_BODY,
   },
@@ -86,7 +86,7 @@ export let LIST_RECENTLY_WATCHED_SEASONS: RemoteCallDescriptor = {
 export let GET_LATEST_WATCHED_EPISODE: RemoteCallDescriptor = {
   name: "GetLatestWatchedEpisode",
   service: PLAY_ACTIVITY_NODE_SERVICE,
-  path: "/GetLatestWatchedEpisode",
+  path: "/s/GetLatestWatchedEpisode",
   body: {
     messageType: GET_LATEST_WATCHED_EPISODE_REQUEST_BODY,
   },

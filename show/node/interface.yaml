@@ -37,6 +37,7 @@
   name: PlayActivityShowNodeRemoteCalls
   service: PlayActivityNodeService
   importService: ./service
+  path: /s
   calls:
     - name: ListRecentlyWatchedSeasons
       path: /ListRecentlyWatchedSeasons
