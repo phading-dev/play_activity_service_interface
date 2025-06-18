@@ -7,9 +7,9 @@
     - name: episodeId
       type: string
       index: 2
-    - name: latestWatchedVideoTimeMs
-      type: number
+    - name: date # ISO string
+      type: string
       index: 3
-    - name: createdTimeMs
+    - name: latestWatchedVideoTimeMs
       type: number
       index: 4

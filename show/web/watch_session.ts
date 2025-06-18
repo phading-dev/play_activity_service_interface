@@ -3,8 +3,8 @@ import { PrimitiveType, MessageDescriptor } from '@selfage/message/descriptor';
 export interface WatchSession {
   seasonId?: string,
   episodeId?: string,
+  date?: string,
   latestWatchedVideoTimeMs?: number,
-  createdTimeMs?: number,
 }
 
 export let WATCH_SESSION: MessageDescriptor<WatchSession> = {
@@ -18,11 +18,11 @@ export let WATCH_SESSION: MessageDescriptor<WatchSession> = {
     index: 2,
     primitiveType: PrimitiveType.STRING,
   }, {
-    name: 'latestWatchedVideoTimeMs',
+    name: 'date',
     index: 3,
-    primitiveType: PrimitiveType.NUMBER,
+    primitiveType: PrimitiveType.STRING,
   }, {
-    name: 'createdTimeMs',
+    name: 'latestWatchedVideoTimeMs',
     index: 4,
     primitiveType: PrimitiveType.NUMBER,
   }],

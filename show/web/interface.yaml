@@ -1,31 +1,24 @@
 - kind: Message
   name: WatchEpisodeRequestBody
   fields:
-    - name: watchSessionId # If empty, a new id will be created and returned.
-      type: string
-      index: 1
     - name: seasonId
       type: string
-      index: 2
+      index: 1
     - name: episodeId
       type: string
-      index: 3
+      index: 2
     - name: watchedVideoTimeMs
       type: number
-      index: 4
+      index: 3
 - kind: Message
   name: WatchEpisodeResponse
-  fields:
-    - name: watchSessionId
-      type: string
-      index: 1
 - kind: Message
   name: ListWatchSessionsRequestBody
   fields:
     - name: limit
       type: number
       index: 1
-    - name: createdTimeCursor
+    - name: updatedTimeCursor
       type: number
       index: 2
 - kind: Message
@@ -36,7 +29,7 @@
       import: ./show/web/watch_session
       isArray: true
       index: 1
-    - name: createdTimeCursor
+    - name: updatedTimeCursor
       type: number
       index: 2
 - kind: Message

@@ -4,7 +4,6 @@ import { PLAY_ACTIVITY_WEB_SERVICE } from '../../service';
 import { RemoteCallDescriptor } from '@selfage/service_descriptor';
 
 export interface WatchEpisodeRequestBody {
-  watchSessionId?: string,
   seasonId?: string,
   episodeId?: string,
   watchedVideoTimeMs?: number,
@@ -13,40 +12,31 @@ export interface WatchEpisodeRequestBody {
 export let WATCH_EPISODE_REQUEST_BODY: MessageDescriptor<WatchEpisodeRequestBody> = {
   name: 'WatchEpisodeRequestBody',
   fields: [{
-    name: 'watchSessionId',
+    name: 'seasonId',
     index: 1,
     primitiveType: PrimitiveType.STRING,
   }, {
-    name: 'seasonId',
+    name: 'episodeId',
     index: 2,
     primitiveType: PrimitiveType.STRING,
   }, {
-    name: 'episodeId',
-    index: 3,
-    primitiveType: PrimitiveType.STRING,
-  }, {
     name: 'watchedVideoTimeMs',
-    index: 4,
+    index: 3,
     primitiveType: PrimitiveType.NUMBER,
   }],
 };
 
 export interface WatchEpisodeResponse {
-  watchSessionId?: string,
 }
 
 export let WATCH_EPISODE_RESPONSE: MessageDescriptor<WatchEpisodeResponse> = {
   name: 'WatchEpisodeResponse',
-  fields: [{
-    name: 'watchSessionId',
-    index: 1,
-    primitiveType: PrimitiveType.STRING,
-  }],
+  fields: [],
 };
 
 export interface ListWatchSessionsRequestBody {
   limit?: number,
-  createdTimeCursor?: number,
+  updatedTimeCursor?: number,
 }
 
 export let LIST_WATCH_SESSIONS_REQUEST_BODY: MessageDescriptor<ListWatchSessionsRequestBody> = {
@@ -56,7 +46,7 @@ export let LIST_WATCH_SESSIONS_REQUEST_BODY: MessageDescriptor<ListWatchSessions
     index: 1,
     primitiveType: PrimitiveType.NUMBER,
   }, {
-    name: 'createdTimeCursor',
+    name: 'updatedTimeCursor',
     index: 2,
     primitiveType: PrimitiveType.NUMBER,
   }],
@@ -64,7 +54,7 @@ export let LIST_WATCH_SESSIONS_REQUEST_BODY: MessageDescriptor<ListWatchSessions
 
 export interface ListWatchSessionsResponse {
   sessions?: Array<WatchSession>,
-  createdTimeCursor?: number,
+  updatedTimeCursor?: number,
 }
 
 export let LIST_WATCH_SESSIONS_RESPONSE: MessageDescriptor<ListWatchSessionsResponse> = {
@@ -75,7 +65,7 @@ export let LIST_WATCH_SESSIONS_RESPONSE: MessageDescriptor<ListWatchSessionsResp
     messageType: WATCH_SESSION,
     isArray: true,
   }, {
-    name: 'createdTimeCursor',
+    name: 'updatedTimeCursor',
     index: 2,
     primitiveType: PrimitiveType.NUMBER,
   }],
